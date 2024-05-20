@@ -11,6 +11,16 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     textAlign: 'center',
   },
+  link: {
+    marginTop: 16,
+    color: '#007BFF',
+    textAlign: 'center',
+  },
+  error: {
+    color: 'red',
+    marginBottom: 16,
+    textAlign: 'center',
+  },
 });
 
 export default styles;
