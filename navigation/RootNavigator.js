@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import AuthNavigator from './AuthNavigator';
@@ -6,16 +6,9 @@ import AppNavigator from './AppNavigator';
 import AuthContext from '../services/AuthContext';
 
 const RootNavigator = () => {
-  const { user } = useContext(AuthContext);
-  const [isLoading, setIsLoading] = useState(true);
+  const { user, loading } = useContext(AuthContext);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-  }, []);
-
-  if (isLoading) {
+  if (loading) {
     return <LoadingScreen />;
   }
 

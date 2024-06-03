@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import AuthContext from '../../services/AuthContext';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 import styles from './styles';
-import { useAuth } from '../../hooks/useAuth';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('testuser@example.com');
   const [password, setPassword] = useState('testpassword');
-  const { login, loginWithGoogle } = useAuth();
+  const { login, loginWithGoogle } = useContext(AuthContext);
 
   const handleLogin = async () => {
     try {
@@ -18,7 +18,7 @@ const LoginScreen = ({ navigation }) => {
         return;
       }
       console.log('User logged in successfully!');
-      navigation.navigate('Home', { screen: 'Home' });
+      // navigation.navigate('Home', { screen: 'Home' });
     } catch (error) {
       console.error('Login failed!', error);
     }
@@ -32,7 +32,7 @@ const LoginScreen = ({ navigation }) => {
         return;
       }
       console.log('User logged in successfully with Google!');
-      navigation.navigate('Home', { screen: 'Home' });
+      // navigation.navigate('Home', { screen: 'Home' });
     } catch (error) {
       console.error('Login with Google failed!', error);
     }
