@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 import styles from './styles';
@@ -7,6 +7,7 @@ import styles from './styles';
 const SignupScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
 
   const handleSignup = () => {
     console.log('Signup button pressed!')
@@ -16,24 +17,40 @@ const SignupScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Inscription</Text>
-      <Input
+      <Text style={styles.title}>SIGN UP</Text>
+      <Text style={styles.subtitle}>Welcome! We're excited to have you here!</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Name"
+        placeholderTextColor="#C4C4C4"
+        value={name}
+        onChangeText={setName}
+      />
+      <TextInput
+        style={styles.input}
         placeholder="Email"
+        placeholderTextColor="#C4C4C4"
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
-        autoCapitalize="none"
       />
-      <Input
-        placeholder="Mot de passe"
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        placeholderTextColor="#C4C4C4"
         value={password}
         onChangeText={setPassword}
-        secureTextEntry
+        secureTextEntry={true}
       />
-      <Button title="S'inscrire" onPress={handleSignup} />
-      <Text style={styles.link} onPress={() => navigation.navigate('Login')}>
-        Déjà un compte ? Connectez-vous
-      </Text>
+       <View style={styles.buttonContainer}>
+        <Button title="Create Account" color="#5C6BC0" onPress={handleSignup} />
+      </View>
+      <View style={styles.registerContainer}>
+        <Text style={styles.registerText}>Already a member ?</Text>
+        <TouchableOpacity>
+          <Text style={styles.registerLink} onPress={() => navigation.navigate('Login')}> Log In</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
