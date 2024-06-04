@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import AuthContext from '../../services/AuthContext';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 import styles from './styles';
 
 const SignupScreen = ({ navigation }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
+  const [name, setName] = useState('Emilie');
+  const [email, setEmail] = useState('testuser@example.com');
+  const [password, setPassword] = useState('testpassword');
+  const { signUp } = useContext(AuthContext);
 
   const handleSignup = () => {
-    console.log('Signup button pressed!')
-    console.log('Email:', email);
-    console.log('Password:', password);
+    try {
+      signUp(name, email, password);
+      console.log('User signed up successfully!');
+    } catch (error) {
+      console.error('Signup failed!', error);
+    }
   };
 
   return (
