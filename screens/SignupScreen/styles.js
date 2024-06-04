@@ -3,21 +3,31 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#80E8A0',
+    backgroundColor: '#D8B4FE',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
+    gap: 34,
+  },
+  WelcomeContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '70%',
+    gap: 6,
   },
   title: {
-    fontSize: 36,
-    fontWeight: 'bold',
-    color: '#000',
-    marginBottom: 10,
+    fontFamily: 'AzeretMono-Black',
+    fontSize: 32,
+    textAlign: 'center',
   },
   subtitle: {
-    fontSize: 14,
-    color: '#000',
-    marginBottom: 30,
+    fontFamily: 'AzeretMono-Regular',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  InputContainer: {
+    width: '90%',
+    gap: 32,
   },
   input: {
     width: '100%',
@@ -25,33 +35,24 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 8,
     paddingHorizontal: 10,
-    marginBottom: 15,
     fontSize: 16,
     borderColor: '#000',
     borderWidth: 1,
   },
-  forgotPassword: {
-    fontSize: 14,
-    color: '#C4C4C4',
-    alignSelf: 'flex-end',
-    marginBottom: 30,
-  },
-  buttonContainer: {
-    width: '100%',
-    marginBottom: 15,
+  button: {
+    width: '80%',
   },
   registerContainer: {
     flexDirection: 'row',
-    marginTop: 20,
   },
   registerText: {
+    fontFamily: 'AzeretMono-Regular',
     fontSize: 14,
-    color: '#000',
   },
   registerLink: {
+    fontFamily: 'AzeretMono-Medium',
     fontSize: 14,
-    color: '#5C6BC0',
-    fontWeight: 'bold',
+    color: '#312E81',
   },
 });
 

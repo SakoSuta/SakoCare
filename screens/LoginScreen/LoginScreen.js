@@ -18,7 +18,6 @@ const LoginScreen = ({ navigation }) => {
         return;
       }
       console.log('User logged in successfully!');
-      // navigation.navigate('Home', { screen: 'Home' });
     } catch (error) {
       console.error('Login failed!', error);
     }
@@ -32,7 +31,6 @@ const LoginScreen = ({ navigation }) => {
         return;
       }
       console.log('User logged in successfully with Google!');
-      // navigation.navigate('Home', { screen: 'Home' });
     } catch (error) {
       console.error('Login with Google failed!', error);
     }
@@ -40,29 +38,40 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>SIGN IN</Text>
-      <Text style={styles.subtitle}>Welcome back you've been missed</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        placeholderTextColor="#C4C4C4"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        placeholderTextColor="#C4C4C4"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry={true}
-      />
-       <View style={styles.buttonContainer}>
-        <Button title="Sign In" color="#5C6BC0" onPress={handleLogin} />
+      <View style={styles.WelcomeContainer}>
+        <Text style={styles.title}>SIGN IN</Text>
+        <Text style={styles.subtitle}>Welcome back you've been missed</Text>
+      </View>
+      <View style={styles.LoginContainer}>
+        <View style={styles.InputContainer}>
+          <View style={styles.Input}>
+            <Input
+              placeholder="Email"
+              value={email}
+              onChangeText={setEmail}
+              keyboardType="email-address"
+            />
+          </View>
+          <View style={styles.Input}>
+            <Input
+              placeholder="Password"
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry={true}
+            />
+          </View>
+        </View>
+        <TouchableOpacity>
+          <Text style={styles.forgotPassword}>Forgot Password?</Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.buttonContainer}>
-        <Button title="Sign In Google" color="#5C6BC0" onPress={handleGoogleLogin} />
+        <View style={styles.button}>
+          <Button title="Sign In" color="#5C6BC0" onPress={handleLogin} />
+        </View>
+        <View style={styles.button}>
+          <Button title="Sign In Google" color="#5C6BC0" onPress={handleGoogleLogin} />
+        </View>
       </View>
       <View style={styles.registerContainer}>
         <Text style={styles.registerText}>Not a member ?</Text>

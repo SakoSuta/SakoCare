@@ -22,32 +22,30 @@ const SignupScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>SIGN UP</Text>
-      <Text style={styles.subtitle}>Welcome! We're excited to have you here!</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Name"
-        placeholderTextColor="#C4C4C4"
-        value={name}
-        onChangeText={setName}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        placeholderTextColor="#C4C4C4"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        placeholderTextColor="#C4C4C4"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry={true}
-      />
-       <View style={styles.buttonContainer}>
+      <View style={styles.WelcomeContainer}>
+        <Text style={styles.title}>SIGN UP</Text>
+        <Text style={styles.subtitle}>Welcome! We're excited to have you here!</Text>
+      </View>
+      <View style={styles.InputContainer}>
+        <Input
+          placeholder="Name"
+          value={name}
+          onChangeText={setName}
+        />
+        <Input
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+        />
+        <Input
+          placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry={true}
+        />
+      </View>
+       <View style={styles.button}>
         <Button title="Create Account" color="#5C6BC0" onPress={handleSignup} />
       </View>
       <View style={styles.registerContainer}>

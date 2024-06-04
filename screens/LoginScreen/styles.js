@@ -7,51 +7,59 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
+    gap: 34,
+  },
+  WelcomeContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '70%',
+    gap: 6,
   },
   title: {
-    fontSize: 36,
-    fontWeight: 'bold',
-    color: '#000',
-    marginBottom: 10,
+    fontFamily: 'AzeretMono-Black',
+    fontSize: 32,
+    textAlign: 'center',
   },
   subtitle: {
-    fontSize: 14,
-    color: '#000',
-    marginBottom: 30,
-  },
-  input: {
-    width: '100%',
-    height: 50,
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    marginBottom: 15,
+    fontFamily: 'AzeretMono-Regular',
     fontSize: 16,
-    borderColor: '#000',
-    borderWidth: 1,
+    textAlign: 'center',
+  },
+  LoginContainer: {
+    width: '90%',
+    gap: 18,
+  },
+  InputContainer: {
+    width: '100%',
+    gap: 32,
+  },
+  Input: {
+    width: '100%',
   },
   forgotPassword: {
     fontSize: 14,
-    color: '#C4C4C4',
+    color: '#312E81',
     alignSelf: 'flex-end',
-    marginBottom: 30,
+    fontFamily: 'AzeretMono-Regular',
   },
   buttonContainer: {
+    width: '80%',
+    gap: 26,
+  },
+  button: {
     width: '100%',
-    marginBottom: 15,
   },
   registerContainer: {
     flexDirection: 'row',
-    marginTop: 20,
   },
   registerText: {
+    fontFamily: 'AzeretMono-Regular',
     fontSize: 14,
-    color: '#000',
   },
   registerLink: {
+    fontFamily: 'AzeretMono-Medium',
     fontSize: 14,
-    color: '#5C6BC0',
-    fontWeight: 'bold',
+    color: '#312E81',
   },
 });
 
