@@ -41,7 +41,7 @@ const TabNavigator = () => {
         },
         tabBarShowLabel: false,
         tabBarStyle: { 
-          backgroundColor: '#A5B4FC',
+          backgroundColor: '#E0E7FF',
           borderWidth: 2,
           borderTopWidth: 2.5,
           borderColor: '#1E1B4B',
