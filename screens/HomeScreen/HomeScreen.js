@@ -1,8 +1,12 @@
 import React, { useContext } from 'react';
 import AuthContext from '../../services/AuthContext';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
+
 import Button from '../../components/Button/Button';
+import Shadow from '../../components/Shadow/Shadow';
+
 import Icon_User from '../../assets/icons/icons_user.png';
+
 import styles from './styles';
 
 const HomeScreen = ({ navigation }) => {
@@ -23,19 +27,27 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.title}>Hello SakoSuta!</Text>
           <Text style={styles.subtitle}>How was your day ?</Text>
         </View>
-        <View style={styles.profileContainer} onPress={() => { navigation.navigate('Profile'); console.log('hello'); }}>
-          <Image source={Icon_User}/>
+        <View>
+          <TouchableOpacity 
+            style={styles.profileContainer} 
+            onPress={() => { 
+              navigation.navigate('Account');
+            }}
+          >
+            <Image source={Icon_User} style={styles.Icon_User} />
+          </TouchableOpacity>
+          <Shadow size="Small" color="#6366F1" />
         </View>
       </View>
-      <Button
+      {/* <Button
         title="Aller au profil"
         color="#5C6BC0"
-      />
-      <Button
+      /> */}
+      {/* <Button
         title="Logout"
         onPress={handleLogout}
         color="#5C6BC0"
-      />
+      /> */}
     </View>
   );
 };

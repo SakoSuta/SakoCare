@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TouchableWithoutFeedback, Text, View } from 'react-native';
+import Shadow from '../Shadow/Shadow';
 import styles from './styles';
 
 const Button = ({ title, onPress, color }) => {
@@ -26,7 +27,7 @@ const Button = ({ title, onPress, color }) => {
           <Text style={styles.buttonText}>{title}</Text>
         </View>
       </TouchableWithoutFeedback>
-      {shadowVisible && <View style={styles.shadowView} />}
+      {shadowVisible && <Shadow size="Normal" color='#000' />}
     </View>
   );
 };

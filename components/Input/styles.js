@@ -13,15 +13,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     fontFamily: 'AzeretMono-Medium',
   },
-  shadowView: {
-    position: 'absolute',
-    top: 5,
-    left: 5,
-    height: 50,
-    width: '100%',
-    zIndex: -10,
-    borderRadius: 5,
-    backgroundColor: '#000'}
 });
 
 export default styles;

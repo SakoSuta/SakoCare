@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    paddingTop: 40,
     backgroundColor: '#A5B4FC',
   },
   introContainer: {
@@ -16,17 +17,24 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
-    fontWeight: 'bold',
+    fontFamily: 'AzeretMono-Black'
   },
   subtitle: {
     fontSize: 14,
+    fontFamily: 'AzeretMono-Medium',
+  },
+  Icon_User: {
+    width: 25,
+    height: 25,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   profileContainer: {
-    width: 45,
-    height: 45,
+    width: 40,
+    height: 40,
     borderRadius: 8,
-    backgroundColor: '#F1F5F9',
-    boxShadow: '2px 3px 0px 0px #6366F1',
+    backgroundColor: '#EEF2FF',
     justifyContent: 'center',
     alignItems: 'center',
   },

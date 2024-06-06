@@ -1,5 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import MonthScreen from '../screens/MonthScreen/MonthScreen';
 import AdviceScreen from '../screens/AdviceScreen/AdviceScreen';
@@ -15,12 +16,11 @@ import AdviceIcon from '../assets/icons/Tabs_Nav/Advice/Advice.png';
 import AdviceIconFocused from '../assets/icons/Tabs_Nav/Advice/Advice-focused.png';
 import YearIcon from '../assets/icons/Tabs_Nav/Year/Year.png';
 import YearIconFocused from '../assets/icons/Tabs_Nav/Year/Year-focused.png';
-import AccountIcon from '../assets/icons/Tabs_Nav/Account/Account.png';
-import AccountIconFocused from '../assets/icons/Tabs_Nav/Account/Account-focused.png';
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
-const AppNavigator = () => {
+const TabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -35,8 +35,6 @@ const AppNavigator = () => {
             iconName = focused ? AdviceIconFocused : AdviceIcon;
           } else if (route.name === 'Year in pixels') {
             iconName = focused ? YearIconFocused : YearIcon;
-          } else if (route.name === 'Account') {
-            iconName = focused ? AccountIconFocused : AccountIcon;
           }
 
           return <Image source={iconName} style={{ width: 24, height: 24 }} />;
@@ -64,8 +62,16 @@ const AppNavigator = () => {
       <Tab.Screen name="My Month" component={MonthScreen} />
       <Tab.Screen name="Advice" component={AdviceScreen} />
       <Tab.Screen name="Year in pixels" component={YearScreen} />
-      <Tab.Screen name="Account" component={AccountScreen} />
     </Tab.Navigator>
+  );
+};
+
+const AppNavigator = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Tabs" component={TabNavigator} />
+      <Stack.Screen name="Account" component={AccountScreen} />
+    </Stack.Navigator>
   );
 };
 
