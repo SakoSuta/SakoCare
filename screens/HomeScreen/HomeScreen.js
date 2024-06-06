@@ -7,6 +7,7 @@ import Shadow from '../../components/Shadow/Shadow';
 
 import Icon_User from '../../assets/icons/icons_user.png';
 
+import colors from '../../styles/colors';
 import styles from './styles';
 
 const HomeScreen = ({ navigation }) => {
@@ -36,17 +37,17 @@ const HomeScreen = ({ navigation }) => {
           >
             <Image source={Icon_User} style={styles.Icon_User} />
           </TouchableOpacity>
-          <Shadow size="Small" color="#6366F1" />
+          <Shadow size="Small" color={colors.ShadowPurple} />
         </View>
       </View>
       {/* <Button
         title="Aller au profil"
-        color="#5C6BC0"
+        color={colors.button}
       /> */}
       {/* <Button
         title="Logout"
         onPress={handleLogout}
-        color="#5C6BC0"
+        color={colors.button}
       /> */}
     </View>
   );

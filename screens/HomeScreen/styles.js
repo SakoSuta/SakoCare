@@ -1,11 +1,12 @@
 import { StyleSheet } from 'react-native';
+import colors from '../../styles/colors';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
     paddingTop: 40,
-    backgroundColor: '#A5B4FC',
+    backgroundColor: colors.backgroundColor,
   },
   introContainer: {
     flexDirection: 'row',
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 8,
-    backgroundColor: '#E0E7FF',
+    backgroundColor: colors.backgroundElement,
     justifyContent: 'center',
     alignItems: 'center',
   },

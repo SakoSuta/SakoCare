@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native';
+import colors from '../../styles/colors';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#D8B4FE',
+    backgroundColor: colors.SignUpBackground,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
@@ -32,11 +33,11 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     height: 50,
-    backgroundColor: '#fff',
+    backgroundColor: colors.White,
     borderRadius: 8,
     paddingHorizontal: 10,
     fontSize: 16,
-    borderColor: '#000',
+    borderColor: colors.Black,
     borderWidth: 1,
   },
   button: {

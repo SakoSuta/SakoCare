@@ -1,26 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import * as Font from 'expo-font';
 import AuthNavigator from './AuthNavigator';
 import AppNavigator from './AppNavigator';
 import AuthContext from '../services/AuthContext';
+import loadFonts from '../styles/fonts';
 
 const RootNavigator = () => {
   const { user, loading: authLoading } = useContext(AuthContext);
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
   useEffect(() => {
-    const loadFonts = async () => {
-      await Font.loadAsync({
-        'AzeretMono-Regular': require('../assets/fonts/AzeretMono-Regular.ttf'),
-        'AzeretMono-Medium': require('../assets/fonts/AzeretMono-Medium.ttf'),
-        'AzeretMono-Black': require('../assets/fonts/AzeretMono-Black.ttf'),
-      });
+    const loadAllFonts = async () => {
+      await loadFonts();
       setFontsLoaded(true);
     };
 
-    loadFonts();
+    loadAllFonts();
   }, []);
 
   if (authLoading || !fontsLoaded) {

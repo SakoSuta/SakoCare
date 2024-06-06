@@ -1,8 +1,11 @@
 import React, { useState, useContext } from 'react';
 import AuthContext from '../../services/AuthContext';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
+
+import colors from '../../styles/colors';
 import styles from './styles';
 
 const LoginScreen = ({ navigation }) => {
@@ -67,10 +70,10 @@ const LoginScreen = ({ navigation }) => {
       </View>
       <View style={styles.buttonContainer}>
         <View style={styles.button}>
-          <Button title="Sign In" color="#5C6BC0" onPress={handleLogin} />
+          <Button title="Sign In" color={colors.button} onPress={handleLogin} />
         </View>
         <View style={styles.button}>
-          <Button title="Sign In Google" color="#5C6BC0" onPress={handleGoogleLogin} />
+          <Button title="Sign In Google" color={colors.button} onPress={handleGoogleLogin} />
         </View>
       </View>
       <View style={styles.registerContainer}>

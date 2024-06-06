@@ -1,8 +1,11 @@
 import React, { useState, useContext } from 'react';
 import AuthContext from '../../services/AuthContext';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
+
+import colors from '../../styles/colors';
 import styles from './styles';
 
 const SignupScreen = ({ navigation }) => {
@@ -46,7 +49,7 @@ const SignupScreen = ({ navigation }) => {
         />
       </View>
        <View style={styles.button}>
-        <Button title="Create Account" color="#5C6BC0" onPress={handleSignup} />
+        <Button title="Create Account" color={colors.button} onPress={handleSignup} />
       </View>
       <View style={styles.registerContainer}>
         <Text style={styles.registerText}>Already a member ?</Text>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextInput, View } from 'react-native';
 import Shadow from '../Shadow/Shadow';
+import colors from '../../styles/colors';
 import styles from './styles';
 
 const Input = ({ placeholder, value, onChangeText, secureTextEntry, keyboardType }) => {
@@ -14,7 +15,7 @@ const Input = ({ placeholder, value, onChangeText, secureTextEntry, keyboardType
         secureTextEntry={secureTextEntry}
         keyboardType={keyboardType}
       />
-      <Shadow size="Normal" color='#000' />
+      <Shadow size="Normal" color={colors.Black} />
     </View>
   );
 };

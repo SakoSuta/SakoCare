@@ -1,12 +1,14 @@
 import React from 'react';
+import { Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
+import colors from '../styles/colors';
+
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import MonthScreen from '../screens/MonthScreen/MonthScreen';
 import AdviceScreen from '../screens/AdviceScreen/AdviceScreen';
 import YearScreen from '../screens/YearScreen/YearScreen';
 import AccountScreen from '../screens/AccountScreen/AccountScreen';
-import { Image } from 'react-native';
 
 import HomeIcon from '../assets/icons/Tabs_Nav/Home/Home.png';
 import HomeIconFocused from '../assets/icons/Tabs_Nav/Home/Home-focused.png';
@@ -41,20 +43,20 @@ const TabNavigator = () => {
         },
         tabBarShowLabel: false,
         tabBarStyle: { 
-          backgroundColor: '#E0E7FF',
+          backgroundColor: colors.backgroundElement,
           borderWidth: 2,
           borderTopWidth: 2.5,
-          borderColor: '#1E1B4B',
+          borderColor: colors.second,
           borderRadius: 20,
           marginHorizontal: 16,
           marginBottom: 25,
           position: 'absolute',
           height: 60,
-          shadowColor: '#1E1B4B',
+          shadowColor: colors.second,
           shadowOpacity: 1,
           elevation: 3,
         },
-        tabBarActiveTintColor: '#1E1B4B',
+        tabBarActiveTintColor: colors.second,
         headerShown: false,
       })}
     >
