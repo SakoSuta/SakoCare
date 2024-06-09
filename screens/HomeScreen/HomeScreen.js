@@ -9,6 +9,7 @@ import Icon_User from '../../assets/icons/icons_user.png';
 
 import colors from '../../styles/colors';
 import styles from './styles';
+import WeekCalendar from '../../components/WeekCalendar/WeekCalendar';
 
 const HomeScreen = ({ navigation }) => {
   const { logout } = useContext(AuthContext);
@@ -28,7 +29,7 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.title}>Hello SakoSuta!</Text>
           <Text style={styles.subtitle}>How was your day ?</Text>
         </View>
-        <View>
+        <View style={{ height: 40 }}>
           <TouchableOpacity 
             style={styles.profileContainer} 
             onPress={() => { 
@@ -40,11 +41,14 @@ const HomeScreen = ({ navigation }) => {
           <Shadow size="Small" color={colors.ShadowPurple} />
         </View>
       </View>
-      <Button
-        title="Logout"
-        onPress={handleLogout}
-        color={colors.button}
-      />
+      <WeekCalendar />
+      <View style={styles.Formul}>
+        <Button
+          title="Logout"
+          onPress={handleLogout}
+          color={colors.button}
+        />
+      </View>
     </View>
   );
 };

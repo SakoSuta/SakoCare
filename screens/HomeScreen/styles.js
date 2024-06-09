@@ -4,11 +4,11 @@ import colors from '../../styles/colors';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
     paddingTop: 40,
     backgroundColor: colors.backgroundColor,
   },
   introContainer: {
+    paddingHorizontal: 16,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -38,6 +38,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.backgroundElement,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  Formul: {
+    flex: 1,
+    paddingHorizontal: 16,
   },
 });
 
