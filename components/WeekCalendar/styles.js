@@ -22,7 +22,7 @@ dayBox: {
     height: 75,
 },
 selectedDayBox: {
-    backgroundColor: colors.ShadowPurple,
+    backgroundColor: colors.primary,
     borderColor: colors.Black,
 },
 dayText: {

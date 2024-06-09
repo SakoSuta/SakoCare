@@ -70,10 +70,10 @@ const LoginScreen = ({ navigation }) => {
       </View>
       <View style={styles.buttonContainer}>
         <View style={styles.button}>
-          <Button title="Sign In" color={colors.button} onPress={handleLogin} />
+          <Button title="Sign In" color={colors.primary} onPress={handleLogin} />
         </View>
         <View style={styles.button}>
-          <Button title="Sign In Google" color={colors.button} onPress={handleGoogleLogin} />
+          <Button title="Sign In Google" color={colors.primary} onPress={handleGoogleLogin} />
         </View>
       </View>
       <View style={styles.registerContainer}>

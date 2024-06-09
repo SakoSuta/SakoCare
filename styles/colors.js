@@ -1,16 +1,15 @@
 export default {
-    backgroundColor: '#A5B4FC',
-    backgroundElement: '#E0E7FF',
+  backgroundColor: '#E0E7FF',
+  backgroundElement: '#F1F5F9',
 
-    second: '#1E1B4B',
+  LoginBackground: '#80E8A0',
+  SignUpBackground: '#D8B4FE',
 
-    button: '#5C6BC0',
-    ShadowPurple: '#6366F1',
-    placeholder: '#94A3B8',
+  primary: '#6366F1',
+  second: '#1E1B4B',
 
-    LoginBackground: '#80E8A0',
-    SignUpBackground: '#D8B4FE',
+  placeholder: '#94A3B8',
 
-    White: '#FFFFFF',
-    Black: '#000000',
-  };
+  White: '#FFFFFF',
+  Black: '#000000',
+};

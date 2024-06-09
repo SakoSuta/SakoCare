@@ -25,7 +25,7 @@ const AccountScreen = ({ navigation }) => {
       <Button
         title="Logout"
         onPress={handleLogout}
-        color={colors.button}
+        color={colors.primary}
       />
     </View>
   );

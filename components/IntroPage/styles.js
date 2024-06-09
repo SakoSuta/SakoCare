@@ -3,7 +3,7 @@ import colors from '../../styles/colors';
 
 const styles = StyleSheet.create({
     container: {
-      backgroundColor: colors.ShadowPurple,
+      backgroundColor: colors.primary,
       paddingTop: 44,
       padding: 34,
       borderBottomEndRadius: 40,

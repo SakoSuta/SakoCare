@@ -38,7 +38,7 @@ const HomeScreen = ({ navigation }) => {
           >
             <Image source={Icon_User} style={styles.Icon_User} />
           </TouchableOpacity>
-          <Shadow size="Small" color={colors.ShadowPurple} />
+          <Shadow size="Small" color={colors.primary} />
         </View>
       </View>
       <WeekCalendar />
@@ -46,7 +46,7 @@ const HomeScreen = ({ navigation }) => {
         <Button
           title="Logout"
           onPress={handleLogout}
-          color={colors.button}
+          color={colors.primary}
         />
       </View>
     </View>

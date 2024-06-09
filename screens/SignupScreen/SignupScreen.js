@@ -49,7 +49,7 @@ const SignupScreen = ({ navigation }) => {
         />
       </View>
        <View style={styles.button}>
-        <Button title="Create Account" color={colors.button} onPress={handleSignup} />
+        <Button title="Create Account" color={colors.primary} onPress={handleSignup} />
       </View>
       <View style={styles.registerContainer}>
         <Text style={styles.registerText}>Already a member ?</Text>

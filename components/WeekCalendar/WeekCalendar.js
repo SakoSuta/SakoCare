@@ -23,7 +23,7 @@ const DayBox = ({ day, date, isSelected, onPress }) => {
           <Text style={[styles.dayText, isSelected && styles.selectedDayText]}>{day}</Text>
           <Text style={[styles.dateText, isSelected && styles.selectedDateText]}>{date}</Text>
         </TouchableOpacity>
-        <Shadow size="Small" color={isSelected ? colors.Black : colors.ShadowPurple} />
+        <Shadow size="Small" color={isSelected ? colors.Black : colors.primary} />
     </View>
   );
 };
