@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import AuthContext from '../../services/AuthContext';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
+import AuthContext from '../../services/AuthContext';
 
 import Button from '../../components/Button/Button';
 import Shadow from '../../components/Shadow/Shadow';
@@ -40,15 +40,11 @@ const HomeScreen = ({ navigation }) => {
           <Shadow size="Small" color={colors.ShadowPurple} />
         </View>
       </View>
-      {/* <Button
-        title="Aller au profil"
-        color={colors.button}
-      /> */}
-      {/* <Button
+      <Button
         title="Logout"
         onPress={handleLogout}
         color={colors.button}
-      /> */}
+      />
     </View>
   );
 };
