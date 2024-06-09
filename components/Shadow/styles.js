@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 5,
     left: 5,
-    height: 50,
+    height: '100%',
     width: '100%',
     zIndex: -10,
     borderRadius: 5,

@@ -8,7 +8,7 @@ import colors from './styles/colors';
 export default function App() {
   useEffect(() => {
     const setNavigationBarColor = async () => {
-      await NavigationBar.setBackgroundColorAsync(colors.backgroundColor);
+      await NavigationBar.setBackgroundColorAsync(colors.backgroundElement);
       await NavigationBar.setButtonStyleAsync('dark')
     };
     setNavigationBarColor();
@@ -17,7 +17,7 @@ export default function App() {
   return (
     <AuthProvider>
       <RootNavigator />
-      <StatusBar style="dark" backgroundColor={colors.backgroundColor} />
+      <StatusBar style="dark" backgroundColor="transparent" />
     </AuthProvider>
   );
 }
