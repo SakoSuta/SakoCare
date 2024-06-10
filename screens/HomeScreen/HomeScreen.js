@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import AuthContext from '../../services/AuthContext';
 
 import Button from '../../components/Button/Button';
@@ -24,7 +24,7 @@ const HomeScreen = ({ navigation }) => {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.introContainer}>
         <View style={styles.welcomeContainer}>
           <Text style={styles.title}>Hello SakoSuta!</Text>
@@ -44,14 +44,34 @@ const HomeScreen = ({ navigation }) => {
       </View>
       <WeekCalendar />
       <View style={styles.Formul}>
-        <Question />
+        <View style={styles.QuestionContainer}>
+          <Question type="moods"/>
+        </View>
+        <View style={styles.QuestionContainer}>
+          <Question type="energy" />
+        </View>
+        <View style={styles.QuestionContainer}>
+          <Question type="stress" />
+        </View>
+        <View style={styles.QuestionContainer}>
+          <Question type="social" />
+        </View>
+        <View style={styles.QuestionContainer}>
+          <Question type="activity" />
+        </View>
+        <View style={styles.QuestionContainer}>
+          <Question type="sleep" />
+        </View>
+        <View style={styles.QuestionContainer}>
+          <Question type="exercice" />
+        </View>
         <Button
           title="Logout"
           onPress={handleLogout}
           color={colors.primary}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

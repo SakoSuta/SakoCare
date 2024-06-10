@@ -40,10 +40,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   Formul: {
-    flex: 1,
     paddingHorizontal: 16,
     justifyContent: 'space-around',
+    marginBottom: 70,
   },
+  QuestionContainer: {
+    marginVertical: 10,
+  }
 });
 
 export default styles;
