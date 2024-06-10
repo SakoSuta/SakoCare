@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
   Formul: {
     flex: 1,
     paddingHorizontal: 16,
+    justifyContent: 'space-around',
   },
 });
 

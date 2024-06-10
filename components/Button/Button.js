@@ -28,7 +28,7 @@ const Button = ({ title, onPress, color }) => {
           <Text style={styles.buttonText}>{title}</Text>
         </View>
       </TouchableWithoutFeedback>
-      {shadowVisible && <Shadow size="Normal" color={colors.Black} />}
+      {shadowVisible && <Shadow size="Normal" />}
     </View>
   );
 };

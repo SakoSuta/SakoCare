@@ -10,6 +10,7 @@ import Icon_User from '../../assets/icons/icons_user.png';
 import colors from '../../styles/colors';
 import styles from './styles';
 import WeekCalendar from '../../components/WeekCalendar/WeekCalendar';
+import Question from '../../components/Question/Question';
 
 const HomeScreen = ({ navigation }) => {
   const { logout } = useContext(AuthContext);
@@ -43,6 +44,7 @@ const HomeScreen = ({ navigation }) => {
       </View>
       <WeekCalendar />
       <View style={styles.Formul}>
+        <Question />
         <Button
           title="Logout"
           onPress={handleLogout}

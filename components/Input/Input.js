@@ -15,7 +15,7 @@ const Input = ({ placeholder, value, onChangeText, secureTextEntry, keyboardType
         secureTextEntry={secureTextEntry}
         keyboardType={keyboardType}
       />
-      <Shadow size="Normal" color={colors.Black} />
+      <Shadow size="Normal" />
     </View>
   );
 };

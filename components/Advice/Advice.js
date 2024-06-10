@@ -23,7 +23,7 @@ const Advice = ({ title, description}) => {
           <Text style={styles.description}>{description}</Text>
         </View>
       </View>
-      <Shadow size="Normal" color={colors.Black} />
+      <Shadow size="Normal" />
     </View>
   );
 };

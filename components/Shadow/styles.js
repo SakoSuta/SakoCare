@@ -3,6 +3,7 @@ import colors from '../../styles/colors';
 
 const styles = StyleSheet.create({
   Normal: {
+    backgroundColor: colors.Black,
     position: 'absolute',
     top: 5,
     left: 5,
@@ -12,6 +13,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   Small: {
+    backgroundColor: colors.Black,
     position: 'absolute',
     top: 4,
     left: 4,
