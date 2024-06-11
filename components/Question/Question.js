@@ -3,14 +3,20 @@ import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
 
 import Shadow from '../Shadow/Shadow';
 
-import Very_Sad from '../../assets/images/moods/Very_Sad.png';
-import Sad from '../../assets/images/moods/Sad.png';
-import Neutral from '../../assets/images/moods/Neutre.png';
-import Happy from '../../assets/images/moods/Smile.png';
-import Very_Happy from '../../assets/images/moods/Big_Smile.png';
-
 import colors from '../../styles/colors';
 import styles from './styles';
+
+import { useSyncIcon } from '../../hooks/useSyncIcon';
+
+// const { moods } = useSyncIcon();
+
+const moods = [
+    { id: 1, name: 'Very_Sad', icon: require('../../assets/images/moods/Very_Sad.png') },
+    { id: 2, name: 'Sad', icon: require('../../assets/images/moods/Sad.png') },
+    { id: 3, name: 'Neutral', icon: require('../../assets/images/moods/Neutre.png') },
+    { id: 4, name: 'Happy', icon: require('../../assets/images/moods/Smile.png') },
+    { id: 5, name: 'Very_Happy', icon: require('../../assets/images/moods/Big_Smile.png') },
+];
 
 const MoodSelector = () => {
     const [selectedMood, setSelectedMood] = useState(null);
@@ -28,23 +34,13 @@ const MoodSelector = () => {
           <Text style={styles.TypeTitle}>How do you feel today?</Text>
           <View>
               <View style={styles.MoodsContainer}>
-                  <View style={styles.AllMoods}>
-                      <TouchableOpacity onPress={() => handlePress('Very_Sad')}>
-                          <Image source={Very_Sad} style={getMoodStyle('Very_Sad')} />
-                      </TouchableOpacity>
-                      <TouchableOpacity onPress={() => handlePress('Sad')}>
-                          <Image source={Sad} style={getMoodStyle('Sad')} />
-                      </TouchableOpacity>
-                      <TouchableOpacity onPress={() => handlePress('Neutral')}>
-                          <Image source={Neutral} style={getMoodStyle('Neutral')} />
-                      </TouchableOpacity>
-                      <TouchableOpacity onPress={() => handlePress('Happy')}>
-                          <Image source={Happy} style={getMoodStyle('Happy')} />
-                      </TouchableOpacity>
-                      <TouchableOpacity onPress={() => handlePress('Very_Happy')}>
-                          <Image source={Very_Happy} style={getMoodStyle('Very_Happy')} />
-                      </TouchableOpacity>
-                  </View>
+                <View style={styles.AllMoods}>
+                    {moods.map(mood => (
+                    <TouchableOpacity key={mood.id} onPress={() => handlePress(mood.name)}>
+                        <Image source={mood.icon} style={getMoodStyle(mood.name)} />
+                    </TouchableOpacity>
+                    ))}
+                </View>
               </View>
               <Shadow size="Normal" color={colors.primary} borderRadius={24}/>
           </View>
