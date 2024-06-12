@@ -4,6 +4,8 @@ import colors from '../../styles/colors';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
+    paddingBottom: 60,
     backgroundColor: colors.backgroundColor,
   },
 });
