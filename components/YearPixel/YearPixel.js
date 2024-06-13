@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import styles from './styles';
+import colors from '../../styles/colors';
 
 const daysInMonth = (month, year) => {
   return new Date(year, month, 0).getDate();
@@ -27,10 +28,11 @@ const PixelGrid = ({ year, data }) => {
             if (day <= daysInCurrentMonth) {
               const dateKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
               const pixelColor = data[dateKey] || '#fff';
+              const borderColor = colors.Black;
               return (
                 <View
                   key={`${month}-${day}`}
-                  style={[styles.pixel, { backgroundColor: pixelColor }]}
+                  style={[styles.pixel, { backgroundColor: pixelColor, borderColor: borderColor}]}
                 />
               );
             }
