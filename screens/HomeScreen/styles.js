@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 40,
     backgroundColor: colors.backgroundColor,
+    paddingBottom: 30,
   },
   introContainer: {
     paddingHorizontal: 16,
