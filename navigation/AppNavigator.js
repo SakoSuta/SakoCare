@@ -25,17 +25,18 @@ const Stack = createStackNavigator();
 const TabNavigator = () => {
   return (
     <Tab.Navigator
+      style={{ paddingBottom: 110 }}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused }) => {
           let iconName;
 
           if (route.name === 'Home') {
             iconName = focused ? HomeIconFocused : HomeIcon;
-          } else if (route.name === 'My Month') {
+          } else if (route.name === 'Month') {
             iconName = focused ? MonthIconFocused : MonthIcon;
           } else if (route.name === 'Advice') {
             iconName = focused ? AdviceIconFocused : AdviceIcon;
-          } else if (route.name === 'Year in pixels') {
+          } else if (route.name === 'Year') {
             iconName = focused ? YearIconFocused : YearIcon;
           }
 
@@ -61,9 +62,9 @@ const TabNavigator = () => {
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="My Month" component={MonthScreen} />
+      <Tab.Screen name="Month" component={MonthScreen} />
       <Tab.Screen name="Advice" component={AdviceScreen} />
-      <Tab.Screen name="Year in pixels" component={YearScreen} />
+      <Tab.Screen name="Year" component={YearScreen} />
     </Tab.Navigator>
   );
 };
