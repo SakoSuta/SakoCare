@@ -6,7 +6,8 @@ container: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: 40,
+    marginTop: 40,
+    marginBottom: 20,
 },
 containerDayBox: {
     marginHorizontal: 4,
