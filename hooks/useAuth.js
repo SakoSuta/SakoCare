@@ -2,13 +2,16 @@ import { auth } from '../services/firebaseConfig';
 // import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { signInWithCredential, GoogleAuthProvider, signInWithEmailAndPassword } from 'firebase/auth';
 import api from '../services/api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const useAuth = () => {
 
   const login = async (email, password) => {
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
-      console.log(result)
+      const token = await result.user.getIdToken();
+      await AsyncStorage.setItem('userToken', token);
+      console.log(result);
     } catch (error) {
       console.error(error);
       return error;
@@ -46,6 +49,7 @@ const signUp = async (name, email, password) => {
   const logout = async () => {
     try {
       await auth.signOut();
+      await AsyncStorage.removeItem('userToken');
     } catch (error) {
       console.error(error);
       return error;

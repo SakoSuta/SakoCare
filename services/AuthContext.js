@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { auth } from '../services/firebaseConfig';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AuthContext = createContext();
 
@@ -10,7 +11,13 @@ export const AuthProvider = ({ children }) => {
   const authMethods = useAuth();
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const token = await user.getIdToken();
+        await AsyncStorage.setItem('userToken', token);
+      } else {
+        await AsyncStorage.removeItem('userToken');
+      }
       setUser(user);
       setLoading(false);
     });
