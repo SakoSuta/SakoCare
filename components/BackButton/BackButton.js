@@ -19,7 +19,7 @@ const BackButton = () => {
                 <Image source={BackIcon} style={styles.icon} />
             </View>
         </TouchableWithoutFeedback>
-        <Shadow size="Small" color={colors.Black} />
+        <Shadow size="Small" color={colors.Black} borderRadius={8}/>
     </View>
   );
 };
