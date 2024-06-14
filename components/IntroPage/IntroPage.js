@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, TextInput } from 'react-native';
+import { View } from 'react-native';
 
-import colors from '../../styles/colors';
 import styles from './styles';
 
 const IntroPage = ({ children }) => {
