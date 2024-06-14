@@ -8,14 +8,18 @@ const styles = StyleSheet.create({
   },
   Intro: {
     width: '100%',
-    height: '15%',
     marginBottom: 25,
+  },
+  IntroContainer: {
+    width: '100%',
+    justifyContent: 'space-between',
   },
   title: {
     fontSize: 22,
     fontFamily: 'AzeretMono-Black',
     textAlign: 'center',
     color: colors.White,
+    marginTop: 10,
   },
   AllSection: {
     width: '100%',

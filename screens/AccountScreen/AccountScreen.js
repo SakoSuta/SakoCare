@@ -10,6 +10,7 @@ import colors from '../../styles/colors';
 import styles from './styles';
 
 import user from '../../assets/icons/Account_Page/user.png';
+import BackButton from '../../components/BackButton/BackButton';
 
 const AccountScreen = ({ navigation }) => {
   const { logout } = useContext(AuthContext);
@@ -28,7 +29,10 @@ const AccountScreen = ({ navigation }) => {
       <View style={styles.container}>
         <View style={styles.Intro}>
           <IntroPage>
-            <Text style={styles.title}>Profile</Text>
+            <View style={styles.IntroContainer}>
+              <BackButton />
+              <Text style={styles.title}>Profile</Text>
+            </View>
           </IntroPage>
         </View>
         <View style={styles.AllSection}>
