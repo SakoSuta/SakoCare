@@ -15,6 +15,51 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: 'AzeretMono-Medium',
   },
+  alternateButton: {
+    paddingVertical: 10,
+    paddingHorizontal: 17,
+    borderWidth: 1.5,
+    borderColor: colors.Black,
+    borderRadius: 8,
+    flexDirection: 'row',
+  },
+  alternateButton1: {
+    paddingVertical: 10,
+    paddingHorizontal: 17,
+    borderWidth: 1.5,
+    borderColor: colors.Black,
+    borderTopRightRadius: 8,
+    borderTopLeftRadius: 8,
+    flexDirection: 'row',
+  },
+  alternateButton2: {
+    paddingVertical: 10,
+    paddingHorizontal: 17,
+    borderWidth: 1.5,
+    borderTopWidth: 0,
+    borderColor: colors.Black,
+    flexDirection: 'row',
+  },
+  alternateButton3: {
+    paddingVertical: 10,
+    paddingHorizontal: 17,
+    borderWidth: 1.5,
+    borderTopWidth: 0,
+    borderColor: colors.Black,
+    borderBottomEndRadius: 8,
+    borderBottomStartRadius: 8,
+    flexDirection: 'row',
+  },
+  alternateButtonText: {
+    color: colors.Black,
+    fontSize: 14,
+    fontFamily: 'AzeretMono-Medium',
+  },
+  icon: {
+    width: 20,
+    height: 20,
+    marginRight: 17,
+  }
 });
 
 export default styles;
