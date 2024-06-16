@@ -47,7 +47,19 @@ const styles = StyleSheet.create({
   },
   QuestionContainer: {
     marginVertical: 10,
-  }
+  },
+  submitButton: {
+    width: '100%',
+    height: 60,
+    backgroundColor: colors.primary,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  submitButtonText: {
+    color: colors.White,
+    fontSize: 18,
+    fontFamily: 'AzeretMono-Medium',
+  },
 });
 
 export default styles;

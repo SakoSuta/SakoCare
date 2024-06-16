@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
 
 import Shadow from '../Shadow/Shadow';
@@ -18,11 +18,16 @@ const moods = [
     { id: 5, name: 'Very_Happy', icon: require('../../assets/images/moods/Big_Smile.png') },
 ];
 
-const MoodSelector = () => {
-    const [selectedMood, setSelectedMood] = useState(null);
+const MoodSelector = ({ value, onSelect }) => {
+    const [selectedMood, setSelectedMood] = useState(value);
+
+    useEffect(() => {
+        setSelectedMood(value);
+    }, [value]);
 
     const handlePress = (mood) => {
       setSelectedMood(mood);
+      onSelect(mood);
     };
   
     const getMoodStyle = (mood) => (
@@ -36,8 +41,8 @@ const MoodSelector = () => {
               <View style={styles.MoodsContainer}>
                 <View style={styles.AllMoods}>
                     {moods.map(mood => (
-                    <TouchableOpacity key={mood.id} onPress={() => handlePress(mood.name)}>
-                        <Image source={mood.icon} style={getMoodStyle(mood.name)} />
+                    <TouchableOpacity key={mood.id} onPress={() => handlePress(mood.id)}>
+                        <Image source={mood.icon} style={getMoodStyle(mood.id)} />
                     </TouchableOpacity>
                     ))}
                 </View>
@@ -48,8 +53,12 @@ const MoodSelector = () => {
     );
 };
 
-const LevelSelector = ({ title, levels, onSelectLevel, positive, negative }) => {
-    const [selectedLevel, setSelectedLevel] = useState(null);
+const LevelSelector = ({ title, levels, onSelectLevel, positive, negative, value }) => {
+    const [selectedLevel, setSelectedLevel] = useState(value);
+
+    useEffect(() => {
+        setSelectedLevel(value);
+    }, [value]);
 
     const handlePress = (level) => {
         setSelectedLevel(level);
@@ -85,59 +94,19 @@ const LevelSelector = ({ title, levels, onSelectLevel, positive, negative }) => 
     );
 };
 
-const EnergyLevel = () => {
-    const handleSelection = (level) => {
-        console.log('Selected level:', level);
-    }
-    return (
-        <LevelSelector
-        title="How much energy do you have?" 
-        levels={[1, 2, 3, 4, 5]}
-        onSelectLevel={handleSelection}
-        positive="Lot of energy"
-        negative="No energy"
-        />
-    );
-};
+const ActivitySelector = ({ value, onSelect }) => {
+    const [selectedActivities, setSelectedActivities] = useState(value || []);
 
-const StressLevel = () => {
-    const handleSelection = (level) => {
-        console.log('Selected level:', level);
-    }
-    return (
-        <LevelSelector
-        title="How stressed are you?" 
-        levels={[1, 2, 3, 4, 5]}
-        onSelectLevel={handleSelection}
-        positive="Not stressed"
-        negative="Very stressed"
-        />
-    );
-};
-
-const SocialLevel = () => {
-    const handleSelection = (level) => {
-        console.log('Selected level:', level);
-    }
-    return (
-        <LevelSelector
-        title="How social are you?" 
-        levels={[1, 2, 3, 4, 5]}
-        onSelectLevel={handleSelection}
-        positive="Not social"
-        negative="Very social"
-        />
-    );
-}
-
-const ActivitySelector = () => {
-    const [selectedActivities, setSelectedActivities] = useState([]);
+    useEffect(() => {
+        setSelectedActivities(value || []);
+    }, [value]);
       
     const handlePress = (activity) => {
         if (selectedActivities.includes(activity.id)) {
             setSelectedActivities(selectedActivities.filter(id => id !== activity.id));
         } else {
             setSelectedActivities([...selectedActivities, activity.id]);
+            onSelect(selectedActivities);
         }
     };
     return (
@@ -168,21 +137,31 @@ const ActivitySelector = () => {
     );
 };
 
-const TimeInput = ({title}) => {
+const TimeInput = ({ title, onSelect, value }) => {
     const [hours, setHours] = useState('');
     const [minutes, setMinutes] = useState('');
+
+    useEffect(() => {
+        if (value) {
+            const totalMinutes = value * 60;
+            setHours(Math.floor(totalMinutes / 60).toString());
+            setMinutes((totalMinutes % 60).toString());
+        }
+    }, [value]);
   
     // Fonctions pour valider les entrées
     const handleHoursInput = (text) => {
-      if (/^[0-9]+$/.test(text) && parseInt(text, 10) <= 23) {
-        setHours(text);
-      }
+        if (/^[0-9]+$/.test(text) && parseInt(text, 10) <= 23) {
+          setHours(text);
+          onSelect(parseInt(text, 10) + parseInt(minutes, 10) / 60);
+        }
     };
-  
+    
     const handleMinutesInput = (text) => {
-      if (/^[0-9]+$/.test(text) && parseInt(text, 10) <= 59) {
-        setMinutes(text);
-      }
+        if (/^[0-9]+$/.test(text) && parseInt(text, 10) <= 59) {
+          setMinutes(text);
+          onSelect(parseInt(hours, 10) + parseInt(text, 10) / 60);
+        }
     };
   
     return (
@@ -215,21 +194,13 @@ const TimeInput = ({title}) => {
     );
 };
 
-const SleepIndicator = () => {
-    return (
-        <TimeInput
-        title="How long did you sleep?"
-        />
-    );
-}
-
-const ExerciceIndicator = () => {
-    return (
-        <TimeInput
-        title="How long did you exercise?"
-        />
-    );
-}
+const SleepIndicator = ({ onSelect, value }) => {
+    return <TimeInput title="How long did you sleep?" value={value} onSelect={onSelect} />;
+};
+  
+const ExerciceIndicator = ({ onSelect, value }) => {
+    return <TimeInput title="How long did you exercise?" value={value} onSelect={onSelect} />;
+};
 
 const activities = [
     { id: 1, label: 'Commencer tôt', iconActive: require('../../assets/icons/Tabs_Nav/Home/Home.png'), iconDesactive: require('../../assets/icons/Tabs_Nav/Home/Home-focused.png')},
@@ -239,12 +210,16 @@ const activities = [
     { id: 5, label: 'Manger', iconActive: require('../../assets/icons/Tabs_Nav/Home/Home.png'), iconDesactive: require('../../assets/icons/Tabs_Nav/Home/Home-focused.png')},
   ];
 
-const Question = ({ type }) => {
-    return (
-        <View style={styles.container}>
-            {type === 'moods' ? <MoodSelector /> : type === 'energy' ? <EnergyLevel /> : type === 'stress' ? <StressLevel /> : type === 'social' ? <SocialLevel /> : type === 'activity' ? <ActivitySelector /> : type === 'sleep' ? <SleepIndicator /> : type === 'exercice' ? <ExerciceIndicator /> : null}
-        </View>
-    );
-};
-
-export default Question;
+  const Question = ({ type, value, onSelect }) => {
+    if (type === 'moods') return <MoodSelector value={value} onSelect={onSelect} />;
+    if (type === 'energy') return <LevelSelector title="How much energy do you have?" levels={[1, 2, 3, 4, 5]} value={value} onSelectLevel={onSelect} positive="Lot of energy" negative="No energy" />;
+    if (type === 'stress') return <LevelSelector title="How stressed are you?" levels={[1, 2, 3, 4, 5]} value={value} onSelectLevel={onSelect} positive="Not stressed" negative="Very stressed" />;
+    if (type === 'social') return <LevelSelector title="How social are you?" levels={[1, 2, 3, 4, 5]} value={value} onSelectLevel={onSelect} positive="Not social" negative="Very social" />;
+    if (type === 'activity') return <ActivitySelector value={value} onSelect={onSelect} />;
+    if (type === 'sleep') return <SleepIndicator value={value} onSelect={onSelect} />;
+    if (type === 'exercice') return <ExerciceIndicator value={value} onSelect={onSelect} />;
+    return null;
+  };
+  
+  export default Question;
+  
