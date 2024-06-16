@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import api from '../../services/api';
-
 import Shadow from '../../components/Shadow/Shadow';
-
 import Icon_User from '../../assets/icons/icons_user.png';
-
 import colors from '../../styles/colors';
 import styles from './styles';
 import WeekCalendar from '../../components/WeekCalendar/WeekCalendar';
 import Question from '../../components/Question/Question';
+
+const userID = 14;
 
 const HomeScreen = ({ navigation }) => {
   const initialFormData = {
@@ -20,18 +19,18 @@ const HomeScreen = ({ navigation }) => {
     activity_type: [],
     sleep_hours: null,
     exercise_time: null,
+    description: '',
   };
 
   const [formData, setFormData] = useState(initialFormData);
   const [isFormChanged, setIsFormChanged] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
+  const [entryId, setEntryId] = useState(null);
 
   useEffect(() => {
     const fetchInitialData = async () => {
-      const userId = 14;
-
       try {
-        const response = await api.get(`user/emotion-diary/${userId}/by-date`, { params: { date: selectedDate } });
+        const response = await api.get(`user/emotion-diary/${userID}/by-date`, { params: { date: selectedDate } });
         const data = response.data[0];
         if (data) {
           setFormData({
@@ -42,10 +41,16 @@ const HomeScreen = ({ navigation }) => {
             activity_type: [data.activity.id],
             sleep_hours: parseFloat(data.sleep_hours),
             exercise_time: parseFloat(data.exercise_time),
+            description: data.description,
           });
+          setEntryId(data.id);
+        } else {
+          setFormData(initialFormData);
+          setEntryId(null);
         }
       } catch (error) {
         setFormData(initialFormData);
+        setEntryId(null);
       }
     };
 
@@ -59,16 +64,22 @@ const HomeScreen = ({ navigation }) => {
 
   const handleFormSubmit = async () => {
     try {
-      const response = await api.post('/emotion-diary', {
-        user_id: 14,
-        entry_date: selectedDate,
-        ...formData,
-        description: "Coucou c'est moi",
-        is_favorite: true,
-        tags: ["updated", "productive"],
-      });
-      console.log('formData:', formData);
-      console.log('Data submitted successfully:', response.data);
+      if (entryId) {
+        const response = await api.patch(`/emotion-diary/${entryId}`, {
+          user_id: userID,
+          entry_date: selectedDate,
+          ...formData,
+        });
+        console.log('Data updated successfully:', response.data);
+      } else {
+        const response = await api.post('/emotion-diary', {
+          user_id: userID,
+          entry_date: selectedDate,
+          ...formData,
+        });
+        console.log('Data submitted successfully:', response.data);
+        setEntryId(response.data.id);
+      }
       setIsFormChanged(false);
     } catch (error) {
       console.error('Error submitting data:', error);
@@ -117,6 +128,9 @@ const HomeScreen = ({ navigation }) => {
           </View>
           <View style={styles.QuestionContainer}>
             <Question type="exercice" value={formData.exercise_time} onSelect={(time) => setFormData({ ...formData, exercise_time: time })} />
+          </View>
+          <View style={styles.QuestionContainer}>
+            <Question type="description" value={formData.description} onChange={(desc) => setFormData({ ...formData, description: desc })} />
           </View>
           <TouchableOpacity
             style={[styles.submitButton, !isFormChanged && styles.submitButtonDisabled]}

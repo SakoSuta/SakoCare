@@ -108,6 +108,22 @@ const styles = StyleSheet.create({
     fontFamily: 'AzeretMono-Bold',
     marginHorizontal: 10,
   },
+  DescriptionContainer: {
+    borderRadius: 24,
+    backgroundColor: colors.backgroundElement,
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+    width: '100%',
+  },
+  DescriptionInput: {
+    fontSize: 14,
+    fontFamily: 'AzeretMono-Medium',
+    textAlignVertical: 'top',
+    width: '100%',
+    backgroundColor: colors.backgroundElement,
+    borderRadius: 24,
+    paddingHorizontal: 10,
+  },
 });
 
 export default styles;

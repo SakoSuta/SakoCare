@@ -202,6 +202,27 @@ const ExerciceIndicator = ({ onSelect, value }) => {
     return <TimeInput title="How long did you exercise?" value={value} onSelect={onSelect} />;
 };
 
+const Description = ({ title, value, onChange }) => {
+  return (
+    <View>
+      <Text style={styles.TypeTitle}>{title}</Text>
+      <View>
+          <View style={styles.DescriptionContainer}>
+              <TextInput
+                style={styles.DescriptionInput}
+                multiline={true}
+                numberOfLines={10}
+                onChangeText={onChange}
+                value={value}
+                placeholder="Enter description"
+              />
+          </View>
+          <Shadow size="Normal" color={colors.primary} borderRadius={24} />
+      </View>
+    </View>
+  );
+};
+
 const activities = [
     { id: 1, label: 'Commencer tôt', iconActive: require('../../assets/icons/Tabs_Nav/Home/Home.png'), iconDesactive: require('../../assets/icons/Tabs_Nav/Home/Home-focused.png')},
     { id: 2, label: 'Faire une liste', iconActive: require('../../assets/icons/Tabs_Nav/Home/Home.png'), iconDesactive: require('../../assets/icons/Tabs_Nav/Home/Home-focused.png')},
@@ -210,7 +231,7 @@ const activities = [
     { id: 5, label: 'Manger', iconActive: require('../../assets/icons/Tabs_Nav/Home/Home.png'), iconDesactive: require('../../assets/icons/Tabs_Nav/Home/Home-focused.png')},
   ];
 
-  const Question = ({ type, value, onSelect }) => {
+  const Question = ({ type, value, onSelect, onChange }) => {
     if (type === 'moods') return <MoodSelector value={value} onSelect={onSelect} />;
     if (type === 'energy') return <LevelSelector title="How much energy do you have?" levels={[1, 2, 3, 4, 5]} value={value} onSelectLevel={onSelect} positive="Lot of energy" negative="No energy" />;
     if (type === 'stress') return <LevelSelector title="How stressed are you?" levels={[1, 2, 3, 4, 5]} value={value} onSelectLevel={onSelect} positive="Not stressed" negative="Very stressed" />;
@@ -218,6 +239,7 @@ const activities = [
     if (type === 'activity') return <ActivitySelector value={value} onSelect={onSelect} />;
     if (type === 'sleep') return <SleepIndicator value={value} onSelect={onSelect} />;
     if (type === 'exercice') return <ExerciceIndicator value={value} onSelect={onSelect} />;
+    if (type === 'description') return <Description title="Description" value={value} onChange={onChange} />;
     return null;
   };
   
