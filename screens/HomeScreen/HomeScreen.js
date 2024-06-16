@@ -39,8 +39,8 @@ const HomeScreen = ({ navigation }) => {
             stress_level: data.stress_level,
             social_level: data.social_level,
             activity_type: [data.activity.id],
-            sleep_hours: parseFloat(data.sleep_hours),
-            exercise_time: parseFloat(data.exercise_time),
+            sleep_hours: data.sleep_hours !== null ? parseFloat(data.sleep_hours) : null,
+            exercise_time: data.exercise_time !== null ? parseFloat(data.exercise_time) : null,
             description: data.description,
           });
           setEntryId(data.id);

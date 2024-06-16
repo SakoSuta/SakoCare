@@ -142,27 +142,47 @@ const TimeInput = ({ title, onSelect, value }) => {
     const [minutes, setMinutes] = useState('');
 
     useEffect(() => {
-        if (value) {
-            const totalMinutes = value * 60;
-            setHours(Math.floor(totalMinutes / 60).toString());
-            setMinutes((totalMinutes % 60).toString());
+        if (value !== null && value !== undefined) {
+          const totalMinutes = value * 60;
+          setHours(Math.floor(totalMinutes / 60).toString());
+          setMinutes((totalMinutes % 60).toString());
+        } else {
+          setHours('');
+          setMinutes('');
         }
-    }, [value]);
-  
-    // Fonctions pour valider les entrées
-    const handleHoursInput = (text) => {
-        if (/^[0-9]+$/.test(text) && parseInt(text, 10) <= 23) {
-          setHours(text);
-          onSelect(parseInt(text, 10) + parseInt(minutes, 10) / 60);
-        }
-    };
+      }, [value]);
     
-    const handleMinutesInput = (text) => {
-        if (/^[0-9]+$/.test(text) && parseInt(text, 10) <= 59) {
-          setMinutes(text);
-          onSelect(parseInt(hours, 10) + parseInt(text, 10) / 60);
+      const validateTime = (hours, minutes) => {
+        const totalMinutes = (parseInt(hours, 10) || 0) * 60 + (parseInt(minutes, 10) || 0);
+        return totalMinutes <= 1440;
+      };
+    
+      const handleHoursInput = (text) => {
+        if (/^[0-9]*$/.test(text)) {
+          const hoursValue = parseInt(text, 10) || 0;
+          const minutesValue = parseInt(minutes, 10) || 0;
+          if (hoursValue <= 23 && validateTime(hoursValue, minutesValue)) {
+            setHours(text);
+            onSelect(hoursValue + minutesValue / 60);
+          } else if (text === '') {
+            setHours('');
+            onSelect(minutesValue / 60);
+          }
         }
-    };
+      };
+    
+      const handleMinutesInput = (text) => {
+        if (/^[0-9]*$/.test(text)) {
+          setMinutes(text);
+          const minutesValue = parseInt(text, 10) || 0;
+          const hoursValue = parseInt(hours, 10) || 0;
+          if (validateTime(hoursValue, minutesValue)) {
+            onSelect(hoursValue + minutesValue / 60);
+          } else {
+            onSelect(24);
+          }
+        }
+      };
   
     return (
       <View>
