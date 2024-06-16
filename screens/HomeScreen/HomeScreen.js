@@ -86,6 +86,20 @@ const HomeScreen = ({ navigation }) => {
     }
   };
 
+  const handleDeleteDay = async () => {
+    try {
+      if (entryId) {
+        const response = await api.delete(`/emotion-diary/${entryId}`);
+        console.log('Data deleted successfully:', response.data);
+        setFormData(initialFormData);
+        setEntryId(null);
+      }
+    }
+    catch (error) {
+      console.error('Error deleting data:', error);
+    }
+  }
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -132,11 +146,14 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.QuestionContainer}>
             <Question type="description" value={formData.description} onChange={(desc) => setFormData({ ...formData, description: desc })} />
           </View>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={[styles.submitButton, !isFormChanged && styles.submitButtonDisabled]}
             onPress={handleFormSubmit}
             disabled={!isFormChanged}>
             <Text style={styles.submitButtonText}>Ok</Text>
+          </TouchableOpacity> */}
+          <TouchableOpacity style={styles.DeleteDay} onPress={handleDeleteDay}>
+            <Text style={styles.DeleteDayText}>Delete this day</Text>
           </TouchableOpacity>
         </View>
       </View>

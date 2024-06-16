@@ -60,6 +60,17 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'AzeretMono-Medium',
   },
+  DeleteDay: {
+    width: '100%',
+    alignItems: 'center',
+    paddingTop: 25,
+    paddingBottom: 10,
+  },
+  DeleteDayText: {
+    fontSize: 14,
+    fontFamily: 'AzeretMono-Bold',
+    color: colors.Error,
+  },
 });
 
 export default styles;
