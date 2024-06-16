@@ -12,62 +12,64 @@ import WeekCalendar from '../../components/WeekCalendar/WeekCalendar';
 import Question from '../../components/Question/Question';
 
 const HomeScreen = ({ navigation }) => {
-  const [initialFormData, setInitialFormData] = useState({
+  const initialFormData = {
     mood_id: null,
     energy_level: null,
     stress_level: null,
     social_level: null,
     activity_type: [],
-    sleep_hours: 0,
-    exercise_time: 0,
-  });
+    sleep_hours: null,
+    exercise_time: null,
+  };
 
   const [formData, setFormData] = useState(initialFormData);
   const [isFormChanged, setIsFormChanged] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
 
   useEffect(() => {
     const fetchInitialData = async () => {
       const userId = 14;
-      const today = new Date().toISOString().split('T')[0];
-      const day = "2024-06-15"
 
       try {
-        const response = await api.get(`user/emotion-diary/${userId}/by-date`, { params: { date: day } });
+        const response = await api.get(`user/emotion-diary/${userId}/by-date`, { params: { date: selectedDate } });
         const data = response.data[0];
-        setFormData({
-          mood_id: data.mood.id,
-          energy_level: data.energy_level,
-          stress_level: data.stress_level,
-          social_level: data.social_level,
-          activity_type: [data.activity.id],
-          sleep_hours: parseFloat(data.sleep_hours),
-          exercise_time: data.exercise_time,
-        });
+        if (data) {
+          setFormData({
+            mood_id: data.mood.id,
+            energy_level: data.energy_level,
+            stress_level: data.stress_level,
+            social_level: data.social_level,
+            activity_type: [data.activity.id],
+            sleep_hours: parseFloat(data.sleep_hours),
+            exercise_time: parseFloat(data.exercise_time),
+          });
+        }
       } catch (error) {
-        console.error('Error fetching initial data:', error);
+        setFormData(initialFormData);
       }
     };
 
     fetchInitialData();
-  }, []);
+  }, [selectedDate]);
 
   useEffect(() => {
     const isChanged = JSON.stringify(formData) !== JSON.stringify(initialFormData);
     setIsFormChanged(isChanged);
-  }, [formData, initialFormData]);
+  }, [formData]);
 
   const handleFormSubmit = async () => {
     try {
       const response = await api.post('/emotion-diary', {
-        user_id: 12,
-        entry_date: new Date().toISOString().split('T')[0],
+        user_id: 14,
+        entry_date: selectedDate,
         ...formData,
-        description: "Coucou c'est moi app",
+        description: "Coucou c'est moi",
         is_favorite: true,
+        tags: ["updated", "productive"],
       });
+      console.log('formData:', formData);
       console.log('Data submitted successfully:', response.data);
-      setInitialFormData(formData); // Met à jour les données initiales après soumission
-      setIsFormChanged(false); // Désactive le bouton après soumission
+      setIsFormChanged(false);
     } catch (error) {
       console.error('Error submitting data:', error);
     }
@@ -93,7 +95,7 @@ const HomeScreen = ({ navigation }) => {
             <Shadow size="Small" color={colors.primary} />
           </View>
         </View>
-        <WeekCalendar />
+        <WeekCalendar onDateSelect={setSelectedDate} />
         <View style={styles.Formul}>
           <View style={styles.QuestionContainer}>
             <Question type="moods" value={formData.mood_id} onSelect={(mood) => setFormData({ ...formData, mood_id: mood })} />
@@ -116,12 +118,12 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.QuestionContainer}>
             <Question type="exercice" value={formData.exercise_time} onSelect={(time) => setFormData({ ...formData, exercise_time: time })} />
           </View>
-        <TouchableOpacity
-          style={styles.submitButton}
-          onPress={handleFormSubmit}
-        >
-          <Text style={styles.submitButtonText}>Ok</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.submitButton, !isFormChanged && styles.submitButtonDisabled]}
+            onPress={handleFormSubmit}
+            disabled={!isFormChanged}>
+            <Text style={styles.submitButtonText}>Ok</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ScrollView>

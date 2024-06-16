@@ -14,7 +14,7 @@ const getWeekDates = () => {
   return weekDays.map((day, index) => {
     const date = new Date(today);
     date.setDate(startOfWeek + index);
-    return { day, date: date.getDate() };
+    return { day, date: date.toISOString().split('T')[0] }; // Changed to return full ISO date
   });
 };
 
@@ -23,14 +23,14 @@ const DayBox = ({ day, date, isSelected, onPress }) => {
     <View style={styles.containerDayBox}>
       <TouchableOpacity style={[styles.dayBox, isSelected && styles.selectedDayBox]} onPress={onPress}>
         <Text style={[styles.dayText, isSelected && styles.selectedDayText]}>{day}</Text>
-        <Text style={[styles.dateText, isSelected && styles.selectedDateText]}>{date}</Text>
+        <Text style={[styles.dateText, isSelected && styles.selectedDateText]}>{date.split('-')[2]}</Text>
       </TouchableOpacity>
       <Shadow size="Small" color={isSelected ? colors.Black : colors.primary} />
     </View>
   );
 };
 
-const WeekCalendar = () => {
+const WeekCalendar = ({ onDateSelect }) => {
   const [days, setDays] = useState(getWeekDates());
   const [selectedDay, setSelectedDay] = useState('');
 
@@ -40,6 +40,8 @@ const WeekCalendar = () => {
     const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const defaultDay = weekDays[dayOfWeek === 0 ? 6 : dayOfWeek - 1];
     setSelectedDay(defaultDay);
+    const defaultDate = days.find(day => day.day === defaultDay).date;
+    onDateSelect(defaultDate); // Set initial date
   }, []);
 
   return (
@@ -50,7 +52,10 @@ const WeekCalendar = () => {
           day={day.day}
           date={day.date}
           isSelected={day.day === selectedDay}
-          onPress={() => setSelectedDay(day.day)}
+          onPress={() => {
+            setSelectedDay(day.day);
+            onDateSelect(day.date);
+          }}
         />
       ))}
     </View>
