@@ -59,7 +59,7 @@ const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     const isChanged = JSON.stringify(formData) !== JSON.stringify(initialFormData);
-    setIsFormChanged(isChanged);
+    setIsFormChanged(isChanged); // TODO: HAVE TO FIX
   }, [formData]);
 
   const handleFormSubmit = async () => {
@@ -79,6 +79,7 @@ const HomeScreen = ({ navigation }) => {
         });
         console.log('Data submitted successfully:', response.data);
         setEntryId(response.data.id);
+        setIsFormChanged(false);
       }
       setIsFormChanged(false);
     } catch (error) {
@@ -101,63 +102,65 @@ const HomeScreen = ({ navigation }) => {
   }
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <View style={styles.introContainer}>
-          <View style={styles.welcomeContainer}>
-            <Text style={styles.title}>Hello SakoSuta!</Text>
-            <Text style={styles.subtitle}>How was your day ?</Text>
+    <View>
+      <ScrollView>
+        <View style={styles.container}>
+          <View style={styles.introContainer}>
+            <View style={styles.welcomeContainer}>
+              <Text style={styles.title}>Hello SakoSuta!</Text>
+              <Text style={styles.subtitle}>How was your day ?</Text>
+            </View>
+            <View style={{ height: 40 }}>
+              <TouchableOpacity
+                style={styles.profileContainer}
+                onPress={() => {
+                  navigation.navigate('Account');
+                }}
+              >
+                <Image source={Icon_User} style={styles.Icon_User} />
+              </TouchableOpacity>
+              <Shadow size="Small" color={colors.primary} />
+            </View>
           </View>
-          <View style={{ height: 40 }}>
-            <TouchableOpacity
-              style={styles.profileContainer}
-              onPress={() => {
-                navigation.navigate('Account');
-              }}
-            >
-              <Image source={Icon_User} style={styles.Icon_User} />
+          <WeekCalendar onDateSelect={setSelectedDate} />
+          <View style={styles.Formul}>
+            <View style={styles.QuestionContainer}>
+              <Question type="moods" value={formData.mood_id} onSelect={(mood) => setFormData({ ...formData, mood_id: mood })} />
+            </View>
+            <View style={styles.QuestionContainer}>
+              <Question type="energy" value={formData.energy_level} onSelect={(level) => setFormData({ ...formData, energy_level: level })} />
+            </View>
+            <View style={styles.QuestionContainer}>
+              <Question type="stress" value={formData.stress_level} onSelect={(level) => setFormData({ ...formData, stress_level: level })} />
+            </View>
+            <View style={styles.QuestionContainer}>
+              <Question type="social" value={formData.social_level} onSelect={(level) => setFormData({ ...formData, social_level: level })} />
+            </View>
+            <View style={styles.QuestionContainer}>
+              <Question type="activity" value={formData.activity_type} onSelect={(activities) => setFormData({ ...formData, activity_type: activities })} />
+            </View>
+            <View style={styles.QuestionContainer}>
+              <Question type="sleep" value={formData.sleep_hours} onSelect={(hours) => setFormData({ ...formData, sleep_hours: hours })} />
+            </View>
+            <View style={styles.QuestionContainer}>
+              <Question type="exercice" value={formData.exercise_time} onSelect={(time) => setFormData({ ...formData, exercise_time: time })} />
+            </View>
+            <View style={styles.QuestionContainer}>
+              <Question type="description" value={formData.description} onChange={(desc) => setFormData({ ...formData, description: desc })} />
+            </View>
+            <TouchableOpacity style={styles.DeleteDay} onPress={handleDeleteDay}>
+              <Text style={styles.DeleteDayText}>Delete this day</Text>
             </TouchableOpacity>
-            <Shadow size="Small" color={colors.primary} />
           </View>
         </View>
-        <WeekCalendar onDateSelect={setSelectedDate} />
-        <View style={styles.Formul}>
-          <View style={styles.QuestionContainer}>
-            <Question type="moods" value={formData.mood_id} onSelect={(mood) => setFormData({ ...formData, mood_id: mood })} />
-          </View>
-          <View style={styles.QuestionContainer}>
-            <Question type="energy" value={formData.energy_level} onSelect={(level) => setFormData({ ...formData, energy_level: level })} />
-          </View>
-          <View style={styles.QuestionContainer}>
-            <Question type="stress" value={formData.stress_level} onSelect={(level) => setFormData({ ...formData, stress_level: level })} />
-          </View>
-          <View style={styles.QuestionContainer}>
-            <Question type="social" value={formData.social_level} onSelect={(level) => setFormData({ ...formData, social_level: level })} />
-          </View>
-          <View style={styles.QuestionContainer}>
-            <Question type="activity" value={formData.activity_type} onSelect={(activities) => setFormData({ ...formData, activity_type: activities })} />
-          </View>
-          <View style={styles.QuestionContainer}>
-            <Question type="sleep" value={formData.sleep_hours} onSelect={(hours) => setFormData({ ...formData, sleep_hours: hours })} />
-          </View>
-          <View style={styles.QuestionContainer}>
-            <Question type="exercice" value={formData.exercise_time} onSelect={(time) => setFormData({ ...formData, exercise_time: time })} />
-          </View>
-          <View style={styles.QuestionContainer}>
-            <Question type="description" value={formData.description} onChange={(desc) => setFormData({ ...formData, description: desc })} />
-          </View>
-          {/* <TouchableOpacity
-            style={[styles.submitButton, !isFormChanged && styles.submitButtonDisabled]}
-            onPress={handleFormSubmit}
-            disabled={!isFormChanged}>
-            <Text style={styles.submitButtonText}>Ok</Text>
-          </TouchableOpacity> */}
-          <TouchableOpacity style={styles.DeleteDay} onPress={handleDeleteDay}>
-            <Text style={styles.DeleteDayText}>Delete this day</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+      <TouchableOpacity
+              style={[styles.fixedButton, !isFormChanged && styles.fixedButtonDisabled]}
+              onPress={handleFormSubmit}
+              disabled={!isFormChanged}>
+        <Text style={[styles.fixedButtonText, !isFormChanged && styles.fixedButtonDisabledText]}>Save</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 

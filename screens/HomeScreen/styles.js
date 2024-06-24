@@ -61,6 +61,26 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'AzeretMono-Medium',
   },
+  fixedButton: {
+    position: 'absolute',
+    bottom: 100,
+    right: 20,
+    backgroundColor: colors.primary,
+    borderRadius: 50,
+    padding: 15,
+  },
+  fixedButtonDisabled: {
+    backgroundColor: "darkgrey",
+  },
+  fixedButtonText: {
+    color: colors.White,
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  fixedButtonDisabledText: {
+    color: "gray",
+  },
   DeleteDay: {
     width: '100%',
     alignItems: 'center',
