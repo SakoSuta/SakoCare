@@ -11,6 +11,15 @@ const PixelGrid = ({ year, data }) => {
   const months = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
   const days = Array.from({ length: 31 }, (_, i) => i + 1);
 
+  console.log('dataMap:', JSON.stringify(data, null, 2));
+
+  const dataMap = {};
+
+  // data.forEach(entry => {
+  //   const dateKey = entry.entry_date.split('T')[0];
+  //   dataMap[dateKey] = entry.mood.color;
+  // });
+
   return (
     <View style={styles.container}>
       <View style={styles.MonthRow}>
@@ -27,7 +36,7 @@ const PixelGrid = ({ year, data }) => {
             const daysInCurrentMonth = daysInMonth(month + 1, year);
             if (day <= daysInCurrentMonth) {
               const dateKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-              const pixelColor = data[dateKey] || '#fff';
+              const pixelColor = dataMap[dateKey] || '#fff';
               const borderColor = colors.Black;
               return (
                 <View

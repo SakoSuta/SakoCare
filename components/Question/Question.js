@@ -6,10 +6,6 @@ import Shadow from '../Shadow/Shadow';
 import colors from '../../styles/colors';
 import styles from './styles';
 
-import { useSyncIcon } from '../../hooks/useSyncIcon';
-
-// const { moods } = useSyncIcon();
-
 const moods = [
     { id: 1, name: 'Very_Sad', icon: require('../../assets/images/moods/Very_Sad.png') },
     { id: 2, name: 'Sad', icon: require('../../assets/images/moods/Sad.png') },
