@@ -8,7 +8,7 @@ import styles from './styles';
 import WeekCalendar from '../../components/WeekCalendar/WeekCalendar';
 import Question from '../../components/Question/Question';
 
-const userID = 14;
+const userID = 1;
 
 const HomeScreen = ({ navigation }) => {
   const initialFormData = {
@@ -38,12 +38,13 @@ const HomeScreen = ({ navigation }) => {
             energy_level: data.energy_level,
             stress_level: data.stress_level,
             social_level: data.social_level,
-            activity_type: [data.activity.id],
+            activity_type: data.activities,
             sleep_hours: data.sleep_hours !== null ? parseFloat(data.sleep_hours) : null,
             exercise_time: data.exercise_time !== null ? parseFloat(data.exercise_time) : null,
             description: data.description,
           });
           setEntryId(data.id);
+          console.log('Data fetched successfully:', formData);
         } else {
           setFormData(initialFormData);
           setEntryId(null);

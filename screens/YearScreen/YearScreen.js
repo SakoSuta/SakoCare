@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Text, View, Image } from 'react-native';
+import { ScrollView, Text, View, ActivityIndicator } from 'react-native';
 
 import YearPixel from '../../components/YearPixel/YearPixel';
 import Shadow from '../../components/Shadow/Shadow';
@@ -7,36 +7,26 @@ import Shadow from '../../components/Shadow/Shadow';
 import styles from './styles';
 import colors from '../../styles/colors';
 
-const moods = [
-  { id: 1, name: 'Very Sad', color: "red"},
-  { id: 2, name: 'Sad', color: "orange"},
-  { id: 3, name: 'Neutral', color: "yellow"},
-  { id: 4, name: 'Happy', color: "limegreen"},
-  { id: 5, name: 'Very Happy', color: "green"},
-];
+// import useInfoUser from '../../hooks/useInfoUser';
+import useYear from '../../hooks/useYear';
+import useMood from '../../hooks/useMood';
 
-const generateFakeData = (year) => {
-  const moods = ['red', 'orange', 'yellow', 'limegreen', 'green'];
-  const data = {};
-
-  const daysInMonth = (month, year) => {
-    return new Date(year, month, 0).getDate();
-  };
-
-  for (let month = 1; month <= 12; month++) {
-    const days = daysInMonth(month, year);
-    for (let day = 1; day <= days; day++) {
-      const dateKey = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-      const mood = moods[Math.floor(Math.random() * moods.length)];
-      data[dateKey] = mood;
-    }
-  }
-
-  return data;
-};
+const userId = 1;
+const year = 2024;
 
 const YearScreen = () => {
-  const data = generateFakeData(2023);
+  const { data, loading: loadingYear, error: errorYear } = useYear(userId, year);
+  const { moods, loading: loadingMoods, error: errorMoods } = useMood();
+
+  if (loadingYear || loadingMoods) {
+    return <ActivityIndicator size="large" color={colors.primary} />;
+  }
+
+  if (errorYear || errorMoods) {
+    return <Text style={styles.errorText}>Error: {errorYear?.message || errorMoods?.message}</Text>;
+  }
+
+  // console.log('YearScreen data:', JSON.stringify(data, null, 2)); // Debug
   return (
     <ScrollView>
       <View style={styles.container}>
