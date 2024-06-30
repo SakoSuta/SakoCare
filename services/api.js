@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-let LOCATION = "Autre"; // "Ecole" ou "Maison" ou "Autre"
+let LOCATION = "Maison"; // "Ecole" ou "Maison" ou "Autre"
 let IP;
 
 if (LOCATION === "Ecole") {
