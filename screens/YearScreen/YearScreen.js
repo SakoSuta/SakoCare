@@ -15,7 +15,7 @@ const userId = 1;
 const year = 2024;
 
 const YearScreen = () => {
-  const { data, loading: loadingYear, error: errorYear } = useYear(userId, year);
+  const { Pixel, loading: loadingYear, error: errorYear } = useYear(userId, year);
   const { moods, loading: loadingMoods, error: errorMoods } = useMood();
 
   if (loadingYear || loadingMoods) {
@@ -26,7 +26,6 @@ const YearScreen = () => {
     return <Text style={styles.errorText}>Error: {errorYear?.message || errorMoods?.message}</Text>;
   }
 
-  // console.log('YearScreen data:', JSON.stringify(data, null, 2)); // Debug
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -47,7 +46,7 @@ const YearScreen = () => {
 
         <View>
           <View style={styles.YearContainer}>
-            <YearPixel year={2023} data={data}/>
+            <YearPixel year={2024} data={Pixel}/>
           </View>
           <Shadow size="Normal" color={colors.Black} borderRadius={24}/>
         </View>
