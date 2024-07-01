@@ -3,19 +3,15 @@ import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
 
 import Shadow from '../Shadow/Shadow';
 
+import useMood from '../../hooks/useMood';
+
 import colors from '../../styles/colors';
 import styles from './styles';
 
-const moods = [
-    { id: 1, name: 'Very_Sad', icon: require('../../assets/images/moods/Very_Sad.png') },
-    { id: 2, name: 'Sad', icon: require('../../assets/images/moods/Sad.png') },
-    { id: 3, name: 'Neutral', icon: require('../../assets/images/moods/Neutre.png') },
-    { id: 4, name: 'Happy', icon: require('../../assets/images/moods/Smile.png') },
-    { id: 5, name: 'Very_Happy', icon: require('../../assets/images/moods/Big_Smile.png') },
-];
-
 const MoodSelector = ({ value, onSelect }) => {
     const [selectedMood, setSelectedMood] = useState(value);
+
+    const { moods } = useMood();
 
     useEffect(() => {
         setSelectedMood(value);
