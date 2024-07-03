@@ -138,7 +138,7 @@ const HomeScreen = ({ navigation }) => {
               <Question type="social" value={formData.social_level} onSelect={(level) => setFormData({ ...formData, social_level: level })} />
             </View>
             <View style={styles.QuestionContainer}>
-              <Question type="activity" value={formData.activity_type} onSelect={(activities) => setFormData({ ...formData, activity_type: activities })} />
+              <Question type="activity" value={formData.activity_id} onSelect={(activities) => setFormData({ ...formData, activity_id: activities })} />
             </View>
             <View style={styles.QuestionContainer}>
               <Question type="sleep" value={formData.sleep_hours} onSelect={(hours) => setFormData({ ...formData, sleep_hours: hours })} />

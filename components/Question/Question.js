@@ -4,6 +4,7 @@ import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
 import Shadow from '../Shadow/Shadow';
 
 import useMood from '../../hooks/useMood';
+import useActivities from '../../hooks/useActivity';
 
 import colors from '../../styles/colors';
 import styles from './styles';
@@ -87,46 +88,50 @@ const LevelSelector = ({ title, levels, onSelectLevel, positive, negative, value
 };
 
 const ActivitySelector = ({ value, onSelect }) => {
-    const [selectedActivities, setSelectedActivities] = useState(value || []);
+  const [selectedActivities, setSelectedActivities] = useState(value || []);
 
-    useEffect(() => {
-        setSelectedActivities(value || []);
-    }, [value]);
-      
-    const handlePress = (activity) => {
-        if (selectedActivities.includes(activity.id)) {
-            setSelectedActivities(selectedActivities.filter(id => id !== activity.id));
-        } else {
-            setSelectedActivities([...selectedActivities, activity.id]);
-            onSelect(selectedActivities);
-        }
-    };
-    return (
+  const { activities } = useActivities();
+
+  useEffect(() => {
+      setSelectedActivities(value || []);
+  }, [value]);
+    
+  const handlePress = (activity) => {
+      if (selectedActivities.includes(activity.id)) {
+          setSelectedActivities(selectedActivities.filter(id => id !== activity.id));
+      } else {
+          const updatedActivities = [...selectedActivities, activity.id];
+          setSelectedActivities(updatedActivities);
+          onSelect(updatedActivities); // Passez le tableau mis à jour
+      }
+  };
+
+  return (
+      <View>
+        <Text style={styles.TypeTitle}>Avez-vous fait une activité particulière?</Text>
         <View>
-          <Text style={styles.TypeTitle}>Did you do a particular activity?</Text>
-          <View>
-              <View style={styles.ActivityContainer}> 
-                {activities.map((activity) => (
-                <TouchableOpacity
-                    key={activity.id}
-                    style={styles.activity}
-                    onPress={() => handlePress(activity)}
-                >
-                    <View 
-                    style={[ styles.ActivityIconeContainer, { backgroundColor: selectedActivities.includes(activity.id) ? colors.primary : colors.backgroundColor} ]}>
-                    <Image 
-                        source={selectedActivities.includes(activity.id) ? activity.iconDesactive : activity.iconActive}
-                        style={styles.ActivityIcone}
-                    />
-                    </View>
-                    <Text style={styles.ActivityLabel}>{activity.label}</Text>
-                </TouchableOpacity>
-                ))}
-              </View>
-              <Shadow size="Normal" color={colors.primary} borderRadius={24}/>
-          </View>
-      </View>
-    );
+            <View style={styles.ActivityContainer}> 
+              {activities.map((activity) => (
+              <TouchableOpacity
+                  key={activity.id}
+                  style={styles.activity}
+                  onPress={() => handlePress(activity)}
+              >
+                  <View 
+                  style={[ styles.ActivityIconeContainer, { backgroundColor: selectedActivities.includes(activity.id) ? colors.primary : colors.backgroundColor} ]}>
+                  <Image 
+                      source={selectedActivities.includes(activity.id) ? activity.iconDesactive : activity.iconActive}
+                      style={styles.ActivityIcone}
+                  />
+                  </View>
+                  <Text style={styles.ActivityLabel}>{activity.activityType}</Text>
+              </TouchableOpacity>
+              ))}
+            </View>
+            <Shadow size="Normal" color={colors.primary} borderRadius={24}/>
+        </View>
+    </View>
+  );
 };
 
 const TimeInput = ({ title, onSelect, value }) => {
@@ -234,14 +239,6 @@ const Description = ({ title, value, onChange }) => {
     </View>
   );
 };
-
-const activities = [
-    { id: 1, label: 'Commencer tôt', iconActive: require('../../assets/icons/Tabs_Nav/Home/Home.png'), iconDesactive: require('../../assets/icons/Tabs_Nav/Home/Home-focused.png')},
-    { id: 2, label: 'Faire une liste', iconActive: require('../../assets/icons/Tabs_Nav/Home/Home.png'), iconDesactive: require('../../assets/icons/Tabs_Nav/Home/Home-focused.png')},
-    { id: 3, label: 'Concentration', iconActive: require('../../assets/icons/Tabs_Nav/Home/Home.png'), iconDesactive: require('../../assets/icons/Tabs_Nav/Home/Home-focused.png')},
-    { id: 4, label: 'Faire une pause', iconActive: require('../../assets/icons/Tabs_Nav/Home/Home.png'), iconDesactive: require('../../assets/icons/Tabs_Nav/Home/Home-focused.png')},
-    { id: 5, label: 'Manger', iconActive: require('../../assets/icons/Tabs_Nav/Home/Home.png'), iconDesactive: require('../../assets/icons/Tabs_Nav/Home/Home-focused.png')},
-  ];
 
   const Question = ({ type, value, onSelect, onChange }) => {
     if (type === 'moods') return <MoodSelector value={value} onSelect={onSelect} />;
