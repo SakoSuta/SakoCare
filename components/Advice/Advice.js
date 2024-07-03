@@ -3,18 +3,15 @@ import { View, Text, Image } from 'react-native';
 
 import Shadow from '../Shadow/Shadow';
 
-import colors from '../../styles/colors';
 import styles from './styles';
 
-import Exemple from '../../assets/images/Exemple.png';
-
-const Advice = ({ title, description}) => {
+const Advice = ({ title, description, image }) => {
   return (
     <View>
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           <Image
-            source={Exemple}
+            source={image}
             style={styles.image}
           />
         </View>

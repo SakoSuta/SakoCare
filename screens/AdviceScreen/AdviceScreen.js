@@ -1,14 +1,29 @@
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, ActivityIndicator } from 'react-native';
 
 import colors from '../../styles/colors';
 import styles from './styles';
+
+import useResources from '../../hooks/useResources';
 
 import Advice from '../../components/Advice/Advice';
 import IntroPage from '../../components/IntroPage/IntroPage';
 import Search from '../../components/Search/Search';
 
 const AdviceScreen = () => {
+  const { resources, UserResources, loading, error } = useResources();
+
+  if (loading) {
+    return <ActivityIndicator size="large" color={colors.primary} />;
+  }
+
+  if (error) {
+    return (
+      <View style={styles.container}>
+        <Text>Error fetching resources: {error.message}</Text>
+      </View>
+    );
+  }
 
   return (
     <ScrollView>
@@ -20,11 +35,24 @@ const AdviceScreen = () => {
           </IntroPage>
         </View>
         <View style={styles.Advice}>
-          <Advice title="Motivation" description="Augmentez la motivation et la confiance"/>
-          <Advice title="Motivation" description="Augmentez la motivation et la confiance"/>
-          <Advice title="Motivation" description="Augmentez la motivation et la confiance"/>
-          <Advice title="Motivation" description="Augmentez la motivation et la confiance"/>
-          <Advice title="Motivation" description="Augmentez la motivation et la confiance"/>
+          <Text style={styles.TextCategory}>Your resources</Text>
+          {resources.map((resource) => (
+            <Advice
+              key={resource.id}
+              title={resource.title}
+              description={resource.description}
+              image={resource.image}
+            />
+          ))}
+          <Text style={styles.TextCategory}>Need Someting esle ?</Text>
+          {resources.map((resource) => (
+            <Advice
+              key={resource.id}
+              title={resource.title}
+              description={resource.description}
+              image={resource.image} // Pass image to Advice component
+            />
+          ))}
         </View>
       </View>
     </ScrollView>

@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
   },
   Intro: {
     width: '100%',
-    height: '30%',
     marginBottom: 25,
   },
   title: {
@@ -20,6 +19,10 @@ const styles = StyleSheet.create({
     fontFamily: 'AzeretMono-Black',
     color: colors.Black,
     marginBottom: 42,
+  },
+  TextCategory: {
+    fontSize: 16,
+    fontFamily: 'AzeretMono-Bold',
   },
   Advice: {
     paddingHorizontal: 13,
