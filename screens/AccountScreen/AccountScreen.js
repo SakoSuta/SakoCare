@@ -61,7 +61,6 @@ const AccountScreen = ({ navigation }) => {
             <View>
               <Button
                 title="Subscription"
-                onPress={() => navigation.navigate('EditProfile')}
                 color={colors.backgroundElement}
                 variant='alternate-1'
                 icon={subscription}
