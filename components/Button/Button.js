@@ -5,7 +5,7 @@ import Shadow from '../Shadow/Shadow';
 
 import styles from './styles';
 
-const Button = ({ title, onPress, color, variant = 'default', icon }) => {
+const       Button = ({ title, onPress, color, variant = 'default', icon }) => {
   const [shadowVisible, setShadowVisible] = useState(true);
 
   const handlePressIn = () => {

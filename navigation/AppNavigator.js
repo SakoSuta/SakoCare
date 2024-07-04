@@ -9,6 +9,7 @@ import MonthScreen from '../screens/MonthScreen/MonthScreen';
 import AdviceScreen from '../screens/AdviceScreen/AdviceScreen';
 import YearScreen from '../screens/YearScreen/YearScreen';
 import AccountScreen from '../screens/AccountScreen/AccountScreen';
+import UserScreen from '../screens/UserScreen/UserScreen.js';
 
 import HomeIcon from '../assets/icons/Tabs_Nav/Home/Home.png';
 import HomeIconFocused from '../assets/icons/Tabs_Nav/Home/Home-focused.png';
@@ -74,6 +75,7 @@ const AppNavigator = () => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Tabs" component={TabNavigator} />
       <Stack.Screen name="Account" component={AccountScreen} />
+      <Stack.Screen name="User" component={UserScreen} />
     </Stack.Navigator>
   );
 };

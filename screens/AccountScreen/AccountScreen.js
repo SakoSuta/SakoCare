@@ -5,6 +5,7 @@ import AuthContext from '../../services/AuthContext';
 import IntroPage from '../../components/IntroPage/IntroPage';
 import Button from '../../components/Button/Button';
 import Shadow from '../../components/Shadow/Shadow';
+import BackButton from '../../components/BackButton/BackButton';
 
 import colors from '../../styles/colors';
 import styles from './styles';
@@ -17,7 +18,6 @@ import album from '../../assets/icons/Account_Page/album.png';
 import FAQ from '../../assets/icons/Account_Page/FAQ.png';
 import Contact from '../../assets/icons/Account_Page/Contact.png';
 import Star from '../../assets/icons/Account_Page/Star.png';
-import BackButton from '../../components/BackButton/BackButton';
 
 const AccountScreen = ({ navigation }) => {
   const { logout } = useContext(AuthContext);
@@ -48,7 +48,7 @@ const AccountScreen = ({ navigation }) => {
             <View>
               <Button
                 title="Account"
-                onPress={() => navigation.navigate('EditProfile')}
+                onPress={() => navigation.navigate('User')}
                 color={colors.backgroundElement}
                 variant='alternate'
                 icon={user}
