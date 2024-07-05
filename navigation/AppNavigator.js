@@ -10,6 +10,9 @@ import AdviceScreen from '../screens/AdviceScreen/AdviceScreen';
 import YearScreen from '../screens/YearScreen/YearScreen';
 import AccountScreen from '../screens/AccountScreen/AccountScreen';
 import UserScreen from '../screens/UserScreen/UserScreen.js';
+import NotificationScreen from '../screens/NotificationScreen/NotificationScreen.js';
+import FavoriteScreen from '../screens/FavoriteScreen/FavoriteScreen.js';
+import AlbumScreen from '../screens/AlbumScreen/AlbumScreen.js';
 
 import HomeIcon from '../assets/icons/Tabs_Nav/Home/Home.png';
 import HomeIconFocused from '../assets/icons/Tabs_Nav/Home/Home-focused.png';
@@ -76,6 +79,9 @@ const AppNavigator = () => {
       <Stack.Screen name="Tabs" component={TabNavigator} />
       <Stack.Screen name="Account" component={AccountScreen} />
       <Stack.Screen name="User" component={UserScreen} />
+      <Stack.Screen name="Notifications" component={NotificationScreen} />
+      <Stack.Screen name="Favorites" component={FavoriteScreen} />
+      <Stack.Screen name="Album" component={AlbumScreen} />
     </Stack.Navigator>
   );
 };

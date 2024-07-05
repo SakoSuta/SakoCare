@@ -67,21 +67,21 @@ const AccountScreen = ({ navigation }) => {
               />
               <Button
                 title="Notifications"
-                onPress={() => navigation.navigate('EditProfile')}
+                onPress={() => navigation.navigate('Notifications')}
                 color={colors.backgroundElement}
                 variant='alternate-2'
                 icon={notification}
               />
               <Button
                 title="Favorites Days"
-                onPress={() => navigation.navigate('EditProfile')}
+                onPress={() => navigation.navigate('Favorites')}
                 color={colors.backgroundElement}
                 variant='alternate-2'
                 icon={favorite}
               />
               <Button
                 title="Album Photos"
-                onPress={() => navigation.navigate('EditProfile')}
+                onPress={() => navigation.navigate('Album')}
                 color={colors.backgroundElement}
                 variant='alternate-3'
                 icon={album}
