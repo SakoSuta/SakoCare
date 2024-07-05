@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, Switch } from 'react-native';
 
 import IntroPage from '../../components/IntroPage/IntroPage';
 import BackButton from '../../components/BackButton/BackButton';
 import Button from '../../components/Button/Button';
-import Input from '../../components/Input/Input';
+import Shadow from '../../components/Shadow/Shadow';
 
 import styles from './styles';
 import colors from '../../styles/colors';
@@ -33,8 +33,13 @@ const NotificationScreen = () => {
         </View>
           <View style={styles.AllSection}>
             <View style={styles.SectionContainer}>
-              <Text style={styles.SectionTitle}>Name :</Text>
-              <Input placeholder="Name" value="{formData.Name}"/>
+              <Text style={styles.SectionTitle}>Globale notifications :</Text>
+                <View style={styles.ItemsContainer}>
+                  <View style={styles.Item}>
+                    <Text style={styles.ItemText}>Activate/Desactivate</Text>
+                    <Switch></Switch>
+                  </View>
+                </View>
             </View>
             <View style={styles.AccountControle}>
               <Button

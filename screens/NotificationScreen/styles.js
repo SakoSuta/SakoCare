@@ -36,6 +36,25 @@ const styles = StyleSheet.create({
     color: colors.Black,
     marginBottom: 15,
   },
+  ItemsContainer: {
+    width: '100%',
+    alignItems: 'center',
+  },
+  Item: {
+    width: '100%',
+    height: 60,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    backgroundColor: colors.backgroundElement,
+    borderRadius: 10,
+    paddingHorizontal: 25,
+  },
+  ItemText: {
+    fontSize: 14,
+    fontFamily: 'AzeretMono-Black',
+    color: colors.Black,
+    textAlignVertical: 'center',
+  },
   AccountControle: {
     width: '70%',
     marginTop: 12,
