@@ -7,6 +7,7 @@ import colors from '../../styles/colors';
 import styles from './styles';
 import WeekCalendar from '../../components/WeekCalendar/WeekCalendar';
 import Question from '../../components/Question/Question';
+import useDate from '../../hooks/useDate';
 
 const userID = 1;
 
@@ -26,28 +27,7 @@ const HomeScreen = ({ navigation }) => {
   const [isFormChanged, setIsFormChanged] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
   const [entryId, setEntryId] = useState(null);
-
-  const getWeekDates = () => {
-    const today = new Date();
-    const dayOfWeek = today.getDay();
-    const startOfWeek = today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
-    const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-
-    return weekDays.map((day, index) => {
-      const date = new Date(today);
-      date.setDate(startOfWeek + index);
-      return { day, date: date.toISOString().split('T')[0] };
-    });
-  };
-
-  const getWeekStartDate = () => {
-    const today = new Date();
-    const dayOfWeek = today.getDay();
-    const startOfWeek = today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
-    const startDate = new Date(today);
-    startDate.setDate(startOfWeek);
-    return startDate.toISOString().split('T')[0];
-  };
+  const { getWeekDates, getWeekStartDate } = useDate();
 
   useEffect(() => {
     const fetchInitialData = async () => {
@@ -86,12 +66,12 @@ const HomeScreen = ({ navigation }) => {
   }, [formData]);
 
   const fetchWeekEntries = async () => {
-    const weekStartDate = getWeekStartDate();
+    const weekStartDate = getWeekStartDate;
     try {
       const response = await api.get(`user/emotion-diary/${userID}/week/${weekStartDate}`);
       const weekEntries = response.data;
 
-      const weekDates = getWeekDates().map(day => day.date);
+      const weekDates = getWeekDates.map(day => day.date);
       const entriesMap = weekEntries.reduce((acc, entry) => {
         acc[entry.entry_date.split('T')[0]] = entry;
         return acc;

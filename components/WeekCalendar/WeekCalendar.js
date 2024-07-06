@@ -4,19 +4,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import Shadow from '../Shadow/Shadow';
 import colors from '../../styles/colors';
 import styles from './styles';
-
-const getWeekDates = () => {
-  const today = new Date();
-  const dayOfWeek = today.getDay();
-  const startOfWeek = today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
-  const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-
-  return weekDays.map((day, index) => {
-    const date = new Date(today);
-    date.setDate(startOfWeek + index);
-    return { day, date: date.toISOString().split('T')[0] }; // Changed to return full ISO date
-  });
-};
+import useDate from '../../hooks/useDate';
 
 const DayBox = ({ day, date, isSelected, onPress }) => {
   return (
@@ -31,7 +19,8 @@ const DayBox = ({ day, date, isSelected, onPress }) => {
 };
 
 const WeekCalendar = ({ onDateSelect }) => {
-  const [days, setDays] = useState(getWeekDates());
+  const { getWeekDates } = useDate();
+  const [days, setDays] = useState(getWeekDates);
   const [selectedDay, setSelectedDay] = useState('');
 
   useEffect(() => {
