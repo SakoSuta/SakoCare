@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import api from '../../services/api';
+
 import Shadow from '../../components/Shadow/Shadow';
-import Icon_User from '../../assets/icons/icons_user.png';
-import colors from '../../styles/colors';
-import styles from './styles';
 import WeekCalendar from '../../components/WeekCalendar/WeekCalendar';
 import Question from '../../components/Question/Question';
+
+import Icon_User from '../../assets/icons/icons_user.png';
+
+import colors from '../../styles/colors';
+import styles from './styles';
+
 import useDate from '../../hooks/useDate';
+import useEmotionDiary from '../../hooks/useEmotionDiary';
 
 const userID = 1;
 
@@ -28,12 +33,12 @@ const HomeScreen = ({ navigation }) => {
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
   const [entryId, setEntryId] = useState(null);
   const { getWeekDates, getWeekStartDate } = useDate();
+  const { getEntryByDate, getEntriesByWeek, createEntry, updateEntry, deleteEntry } = useEmotionDiary();
 
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
-        const response = await api.get(`user/emotion-diary/${userID}/by-date`, { params: { date: selectedDate } });
-        const data = response.data[0];
+        const data = await getEntryByDate(userID, selectedDate);
         if (data) {
           setFormData({
             mood_id: data.mood.id,
@@ -68,8 +73,7 @@ const HomeScreen = ({ navigation }) => {
   const fetchWeekEntries = async () => {
     const weekStartDate = getWeekStartDate;
     try {
-      const response = await api.get(`user/emotion-diary/${userID}/week/${weekStartDate}`);
-      const weekEntries = response.data;
+      const weekEntries = await getEntriesByWeek(userID, weekStartDate);
 
       const weekDates = getWeekDates.map(day => day.date);
       const entriesMap = weekEntries.reduce((acc, entry) => {
@@ -92,21 +96,21 @@ const HomeScreen = ({ navigation }) => {
     try {
       const formattedDate = `${selectedDate}T00:00:00.000Z`;
       if (entryId) {
-        const response = await api.patch(`/emotion-diary/${entryId}`, {
+        const response = await updateEntry(entryId, {
           user_id: userID,
           entry_date: formattedDate,
           ...formData,
         });
-        console.log('Data updated successfully:', response.data);
+        console.log('Data updated successfully:', response);
       } else {
-        const response = await api.post('/emotion-diary', {
+        const response = await createEntry({
           user_id: userID,
           entry_date: formattedDate,
           ...formData,
         });
-        console.log('Data submitted successfully:', response.data);
+        console.log('Data submitted successfully:', response);
         fetchWeekEntries();
-        setEntryId(response.data.id);
+        setEntryId(response.id);
         setIsFormChanged(false);
       }
       setIsFormChanged(false);
@@ -118,8 +122,8 @@ const HomeScreen = ({ navigation }) => {
   const handleDeleteDay = async () => {
     try {
       if (entryId) {
-        const response = await api.delete(`/emotion-diary/${entryId}`);
-        console.log('Data deleted successfully:', response.data);
+        const response = await deleteEntry(entryId);
+        console.log('Data deleted successfully:', response);
         setFormData(initialFormData);
         setEntryId(null);
       }
