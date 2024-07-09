@@ -25,6 +25,33 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
   },
+  moodCountContainer: {
+    marginHorizontal: 20,
+    marginBottom: 20,
+  },
+  moodCount: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 20,
+    padding: 20,
+    paddingBottom: 13,
+    borderRadius: 10,
+    backgroundColor: colors.backgroundElement,
+  },
+  InfoMoods: {
+    alignItems: 'center',
+    gap: 10,
+  },
+  MoodIcon: {
+    width: 45,
+    height: 45,
+    opacity: 0.4
+  },
+  lableCount: {
+    fontSize: 16,
+    fontFamily: 'AzeretMono-Bold',
+    color: colors.Black,
+  }
 });
 
 export default styles;
