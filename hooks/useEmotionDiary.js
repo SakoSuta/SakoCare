@@ -18,6 +18,16 @@ const useEmotionDiary = () => {
     }
   }, []);
 
+  const getEntriesByMonth = useCallback(async (userID, monthStartDate) => {
+    try {
+      const response = await api.get(`user/emotion-diary/${userID}/month/${monthStartDate}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching entries by month:', error);
+      throw error;
+    }
+  }, []);
+
   const createEntry = useCallback(async (entryData) => {
     try {
       const response = await api.post('/emotion-diary', entryData);
@@ -51,6 +61,7 @@ const useEmotionDiary = () => {
   return {
     getEntryByDate,
     getEntriesByWeek,
+    getEntriesByMonth,
     createEntry,
     updateEntry,
     deleteEntry,
