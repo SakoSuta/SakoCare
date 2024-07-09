@@ -11,7 +11,8 @@ import IntroPage from '../../components/IntroPage/IntroPage';
 import Search from '../../components/Search/Search';
 
 const AdviceScreen = () => {
-  const { resources, UserResources, loading, error } = useResources();
+  const userID = 1;
+  const { resources, UserResources, loading, error } = useResources(userID);
 
   if (loading) {
     return <ActivityIndicator size="large" color={colors.primary} />;
@@ -36,7 +37,7 @@ const AdviceScreen = () => {
         </View>
         <View style={styles.Advice}>
           <Text style={styles.TextCategory}>Your resources</Text>
-          {resources.map((resource) => (
+          {UserResources.map((resource) => (
             <Advice
               key={resource.id}
               title={resource.title}
@@ -50,7 +51,7 @@ const AdviceScreen = () => {
               key={resource.id}
               title={resource.title}
               description={resource.description}
-              image={resource.image} // Pass image to Advice component
+              image={resource.image}
             />
           ))}
         </View>

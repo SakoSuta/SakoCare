@@ -34,7 +34,7 @@ const resourceImage = {
     },
 };
 
-const useResources = () => {
+const useResources = (userID) => {
   const [resources, setResources] = useState([]);
   const [UserResources, setUserResources] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -59,13 +59,13 @@ const useResources = () => {
       }
     };
 
-    const fetchUserResources = async () => {
+    const fetchUserResources = async (userID) => {
       setLoading(true);
       try {
-        const response = await api.get('/user/user-resources');
+        const response = await api.get(`/user/user-resources/${userID}`);
         console.log('User resources fetched successfully:', response.data);
         const ResourceWithImages = response.data.map(resource => ({
-          ...resource,
+          ...resource.resource,
           image: resourceImage[resource.id]?.image,
         }));
         setUserResources(ResourceWithImages);
@@ -75,11 +75,11 @@ const useResources = () => {
       } finally {
         setLoading(false);
       }
-    }
+    };
 
-    fetchUserResources();
+    fetchUserResources(userID);
     fetchResources();
-  }, []);
+  }, [userID]);
 
   return { resources, UserResources, loading, error };
 };
