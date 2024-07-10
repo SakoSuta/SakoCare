@@ -3,44 +3,44 @@ import api from '../services/api';
 
 const activityIcons = {
     1: {
-        active: require('../assets/icons/Tabs_Nav/Home/Home.png'),
-        desactive: require('../assets/icons/Tabs_Nav/Home/Home-focused.png')
+        active: require('../assets/icons/Activity/Star.png'),
+        desactive: require('../assets/icons/Activity/Star-focused.png')
     },
     2: {
-        active: require('../assets/icons/Tabs_Nav/Home/Home.png'),
-        desactive: require('../assets/icons/Tabs_Nav/Home/Home-focused.png')
+        active: require('../assets/icons/Activity/Star.png'),
+        desactive: require('../assets/icons/Activity/Star-focused.png')
     },
     3: {
-        active: require('../assets/icons/Tabs_Nav/Home/Home.png'),
-        desactive: require('../assets/icons/Tabs_Nav/Home/Home-focused.png')
+        active: require('../assets/icons/Activity/Star.png'),
+        desactive: require('../assets/icons/Activity/Star-focused.png')
     },
     4: {
-        active: require('../assets/icons/Tabs_Nav/Home/Home.png'),
-        desactive: require('../assets/icons/Tabs_Nav/Home/Home-focused.png')
+        active: require('../assets/icons/Activity/Star.png'),
+        desactive: require('../assets/icons/Activity/Star-focused.png')
     },
     5: {
-        active: require('../assets/icons/Tabs_Nav/Home/Home.png'),
-        desactive: require('../assets/icons/Tabs_Nav/Home/Home-focused.png')
+        active: require('../assets/icons/Activity/Star.png'),
+        desactive: require('../assets/icons/Activity/Star-focused.png')
     },
     6: {
-        active: require('../assets/icons/Tabs_Nav/Home/Home.png'),
-        desactive: require('../assets/icons/Tabs_Nav/Home/Home-focused.png')
+        active: require('../assets/icons/Activity/Star.png'),
+        desactive: require('../assets/icons/Activity/Star-focused.png')
     },
     7: {
-        active: require('../assets/icons/Tabs_Nav/Home/Home.png'),
-        desactive: require('../assets/icons/Tabs_Nav/Home/Home-focused.png')
+        active: require('../assets/icons/Activity/Star.png'),
+        desactive: require('../assets/icons/Activity/Star-focused.png')
     },
     8: {
-        active: require('../assets/icons/Tabs_Nav/Home/Home.png'),
-        desactive: require('../assets/icons/Tabs_Nav/Home/Home-focused.png')
+        active: require('../assets/icons/Activity/Star.png'),
+        desactive: require('../assets/icons/Activity/Star-focused.png')
     },
     9: {
-        active: require('../assets/icons/Tabs_Nav/Home/Home.png'),
-        desactive: require('../assets/icons/Tabs_Nav/Home/Home-focused.png')
+        active: require('../assets/icons/Activity/Star.png'),
+        desactive: require('../assets/icons/Activity/Star-focused.png')
     },
     10: {
-        active: require('../assets/icons/Tabs_Nav/Home/Home.png'),
-        desactive: require('../assets/icons/Tabs_Nav/Home/Home-focused.png')
+        active: require('../assets/icons/Activity/Star.png'),
+        desactive: require('../assets/icons/Activity/Star-focused.png')
     },
 };
 

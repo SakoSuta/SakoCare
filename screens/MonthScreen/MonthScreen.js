@@ -1,7 +1,6 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image } from 'react-native';
 import { Calendar } from 'react-native-calendars';
-import AuthContext from '../../services/AuthContext';
 
 import Button from '../../components/Button/Button';
 import IntroPage from '../../components/IntroPage/IntroPage';
@@ -16,7 +15,6 @@ import styles from './styles';
 const MonthScreen = () => {
   const { getEntriesByMonth } = useEmotionDiary();
   const { moods } = useMood();
-  const { logout } = useContext(AuthContext);
 
   const userID = 1;
   const [markedDates, setMarkedDates] = useState({});
@@ -69,15 +67,6 @@ const MonthScreen = () => {
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      await logout();
-      console.log('Logout successful!');
-    } catch (error) {
-      console.error('Logout failed!', error);
-    }
-  }
-
   return (
     <View style={styles.container}>
       <View style={styles.Intro}>
@@ -117,11 +106,6 @@ const MonthScreen = () => {
         </View>
         <Shadow color={colors.primary} size="Normal" borderRadius={10} />
       </View>
-      <Button
-        title="Logout"
-        onPress={handleLogout}
-        color={colors.primary}
-      />
     </View>
   );
 };
