@@ -93,6 +93,7 @@ const HomeScreen = ({ navigation }) => {
           endDate: weekEndDate,
         });
         setRecommendation(response.data);
+        console.log('Recommendation:', response.data);
         setIsModalVisible(true);
       } else {
         console.log("Not all days have entries.");
@@ -214,9 +215,13 @@ const HomeScreen = ({ navigation }) => {
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Recommended Resource</Text>
-            <Text>{recommendation?.resource}</Text>
-            <Button title="Close" onPress={closeModal} />
+            <Text style={styles.modalTitle}>Well Done!</Text>
+            <Text style={styles.modalText}>You've completed all your entries for this week. Here's your recommended resource for next week:</Text>
+            <Text style={styles.modalText}>{recommendation?.title}</Text>
+            <Text style={styles.modalText}>Go check this out!</Text>
+            <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
+              <Text style={styles.closeButtonText}>Close</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>

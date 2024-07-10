@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../styles/colors';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const styles = StyleSheet.create({
   container: {
@@ -91,6 +90,39 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: 'AzeretMono-Bold',
     color: colors.Error,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    width: 300,
+    padding: 20,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontFamily: 'AzeretMono-Bold',
+    marginBottom: 10,
+  },
+  modalText: {
+    fontSize: 14,
+    fontFamily: 'AzeretMono-Regular',
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  closeButton: {
+    backgroundColor: colors.primary,
+    padding: 10,
+    borderRadius: 5,
+  },
+  closeButtonText: {
+    color: colors.White,
+    fontFamily: 'AzeretMono-Bold',
   },
 });
 
