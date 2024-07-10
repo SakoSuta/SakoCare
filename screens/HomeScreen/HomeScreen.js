@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, Image, TouchableOpacity, ScrollView, Modal, Button } from 'react-native';
 import api from '../../services/api';
 
 import Shadow from '../../components/Shadow/Shadow';
@@ -32,6 +32,8 @@ const HomeScreen = ({ navigation }) => {
   const [isFormChanged, setIsFormChanged] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
   const [entryId, setEntryId] = useState(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [recommendation, setRecommendation] = useState(null);
   const { getWeekDates, getWeekStartDate } = useDate();
   const { getEntryByDate, getEntriesByWeek, createEntry, updateEntry, deleteEntry } = useEmotionDiary();
 
@@ -72,6 +74,7 @@ const HomeScreen = ({ navigation }) => {
 
   const fetchWeekEntries = async () => {
     const weekStartDate = getWeekStartDate;
+    const weekEndDate = getWeekDates[6].date;
     try {
       const weekEntries = await getEntriesByWeek(userID, weekStartDate);
 
@@ -84,6 +87,13 @@ const HomeScreen = ({ navigation }) => {
       const allDaysHaveEntries = weekDates.every(date => entriesMap[date]);
       if (allDaysHaveEntries) {
         console.log("All days have entries.");
+        const response = await api.post('/user-resources/recommend', {
+          userId: userID,
+          startDate: weekStartDate,
+          endDate: weekEndDate,
+        });
+        setRecommendation(response.data);
+        setIsModalVisible(true);
       } else {
         console.log("Not all days have entries.");
       }
@@ -132,6 +142,10 @@ const HomeScreen = ({ navigation }) => {
       console.error('Error deleting data:', error);
     }
   }
+
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
 
   return (
     <View>
@@ -192,6 +206,20 @@ const HomeScreen = ({ navigation }) => {
               disabled={!isFormChanged}>
         <Text style={[styles.fixedButtonText, !isFormChanged && styles.fixedButtonDisabledText]}>Save</Text>
       </TouchableOpacity>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={isModalVisible}
+        onRequestClose={closeModal}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>Recommended Resource</Text>
+            <Text>{recommendation?.resource}</Text>
+            <Button title="Close" onPress={closeModal} />
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
