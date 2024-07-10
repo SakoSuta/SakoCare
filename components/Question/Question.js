@@ -108,7 +108,7 @@ const ActivitySelector = ({ value, onSelect }) => {
 
   return (
       <View>
-        <Text style={styles.TypeTitle}>Avez-vous fait une activité particulière?</Text>
+        <Text style={styles.TypeTitle}>Did you do a particular activity?</Text>
         <View>
             <View style={styles.ActivityContainer}> 
               {activities.map((activity) => (
