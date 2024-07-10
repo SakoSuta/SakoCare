@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Linking } from 'react-native';
 import AuthContext from '../../services/AuthContext';
 
 import IntroPage from '../../components/IntroPage/IntroPage';
@@ -94,21 +94,21 @@ const AccountScreen = ({ navigation }) => {
             <View>
               <Button
                 title="FAQ"
-                onPress={() => navigation.navigate('EditProfile')}
+                onPress={() => {Linking.openURL('https://sakocare-57a29.web.app/')}}
                 color={colors.backgroundElement}
                 variant='alternate-1'
                 icon={FAQ}
               />
               <Button
                 title="Contact Us"
-                onPress={() => navigation.navigate('EditProfile')}
+                onPress={() => {Linking.openURL('https://sakocare-57a29.web.app/')}}
                 color={colors.backgroundElement}
                 variant='alternate-2'
                 icon={Contact}
               />
               <Button
                 title="Write a Review"
-                onPress={() => navigation.navigate('EditProfile')}
+                onPress={() => {Linking.openURL('https://sakocare-57a29.web.app/')}}
                 color={colors.backgroundElement}
                 variant='alternate-3'
                 icon={Star}
